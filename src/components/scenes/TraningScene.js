@@ -4,7 +4,6 @@ import AddButton from "../base/AddButton";
 import TraningCard from "../traning/TraningCard";
 
 const TraningScene = props => {
-
     const [tranings, setTranings] = useState([{
         "title": "Толкай",
         "date": "2022-10-10",

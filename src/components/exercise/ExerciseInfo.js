@@ -1,4 +1,5 @@
-import { Button, Card, CardActions, CardContent, createTheme, ThemeProvider, Typography } from '@mui/material';
+import { Button, Card, CardActions, CardContent, createTheme, TextField, ThemeProvider, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import React from 'react';
 
 const theme = createTheme({
@@ -10,19 +11,22 @@ const theme = createTheme({
 })
 
 const ExerciseInfo = (props) => {
-    return <ThemeProvider>
-        <Card>
-            <CardContent>
-                <Typography>{props.title}</Typography>
-                <Typography>{props.partOfBody}</Typography>
-                <Typography>{props.keyMuscle}</Typography>
-            </CardContent>
-            <CardActions>
-                <Button size='small'>Remove</Button>
-            </CardActions>
-        </Card>
+    return <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+        <TextField
+            fullWidth
+            id="exeecise-title"
+            label="Название"
+            variant="standard"
+            value={props.title} />
+        <Button
+            fullWidth
+            color="error"
+            sx={{ justifyContent: "flex-start", mt:1, pl: 0 }}
+            disableRipple>
+            Удалить упражнение
+        </Button>
 
-    </ThemeProvider>
+    </Box>
 };
 
 export default ExerciseInfo;

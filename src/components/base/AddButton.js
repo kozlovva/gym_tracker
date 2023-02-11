@@ -10,8 +10,10 @@ const AddButton = props => {
             fullWidth
             sx={{
                 backgroundColor: "#322E18",
-                color: "#fff"
-            }}>
+                color: "#fff",
+                p:2
+            }}
+            onClick={props.onClick}>
             {props.text}
         </Button>
     </Paper>

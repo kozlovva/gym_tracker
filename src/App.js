@@ -17,7 +17,8 @@ const darkTheme = createTheme({
     primary: {
       main: "#CFCCD6",
       light: "#F4F4F6",
-      dark: "#A5A5B6"
+      dark: "#A5A5B6",
+      contrastText: "#322E18"
     },
     secondary: {
       main: "#B7B5E4",
@@ -39,16 +40,12 @@ function App() {
   };
 
   const theme = useTheme();
-  console.log("Theme", theme);
 
   return (
-    <Box sx={{ display: 'flex', height: '100%', justifyContent: 'center', pb: 7, pt: 8 }}>
+    <Box sx={{ display: 'flex', height: '100%', justifyContent: 'center', pb: 7 }}>
       <CssBaseline />
       <ThemeProvider theme={darkTheme}>
-        <AppBar component={"nav"} position="fixed">
-          <Toolbar></Toolbar>
-        </AppBar>
-        <Box component={"main"} sx={{ p: 1, width: '100%' }}>
+        <Box component={"main"} sx={{ p: 1, width: '100%' , height: '100%', overflowY: "scroll", pb: 10}}>
           {scene == "exercise" && <ExercisesScene />}
           {scene == "traning" && <TraningScene />}
           <Navigation activeScene={scene} handleChange={handleChange}/>
