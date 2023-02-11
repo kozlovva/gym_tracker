@@ -1,6 +1,9 @@
-import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import { Avatar, Button, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemText, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import ExerciseInfo from "./ExerciseInfo";
+import BoyIcon from '@mui/icons-material/Boy';
+import DeleteIcon from "@mui/icons-material/Delete"
+import EditButton from "@mui/icons-material/Edit";
+import AddButton from "../base/AddButton";
 
 const getExcercises = () => {
     return [
@@ -24,13 +27,25 @@ const ExerciseList = () => {
     useEffect(() => {
         setExercises(getExcercises());
     }, [])
-    return <List>
-        {exercises.map((exercise) => <ListItem disablePadding>
-            <ListItemButton>
-                <ListItemText primary={exercise.title}></ListItemText>
-            </ListItemButton>
-        </ListItem>)}
-    </List>
+    return <div>
+        <Paper>
+            <List>
+                {exercises.map((exercise) =>
+                    <ListItemButton
+                        sx={{ mt: 1, mb: 1 }}>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <BoyIcon />
+                            </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary={exercise.title}
+                        />
+                    </ListItemButton>)}
+            </List>
+        </Paper>
+        <AddButton text="Создать упражнение" />
+    </div>
 }
 
 export default ExerciseList;

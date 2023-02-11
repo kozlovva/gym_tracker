@@ -1,57 +1,60 @@
 import React, { useState } from "react";
 import './App.css';
-import { AppBar, BottomNavigation, BottomNavigationAction, Box, Drawer, Grid, Paper, Toolbar } from '@mui/material';
+import { AppBar, Box, Toolbar } from '@mui/material';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Container } from "@mui/system";
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import FitbitIcon from '@mui/icons-material/Fitbit';
 import ExercisesScene from "./components/scenes/ExercisesScene";
-
+import TraningScene from "./components/scenes/TraningScene";
+import Navigation from "./components/base/Navigation";
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark',
+    primary: {
+      main: "#CFCCD6",
+      light: "#F4F4F6",
+      dark: "#A5A5B6"
+    },
+    secondary: {
+      main: "#B7B5E4",
+      light: "#E2E1F4",
+      dark: "#9A97D8"
+    }
   },
+  shape: {
+    borderRadius: '8px'
+  }
 });
 
 function App() {
 
-  const [scene, setScene] = useState("traning")
+  const [scene, setScene] = useState("exercise")
 
   const handleChange = (event, newValue) => {
     setScene(newValue);
   };
 
+  const theme = useTheme();
+  console.log("Theme", theme);
+
   return (
-    <div className="App">
+    <Box sx={{ display: 'flex', height: '100%', justifyContent: 'center', pb: 7, pt: 8 }}>
+      <CssBaseline />
       <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
         <AppBar component={"nav"} position="fixed">
           <Toolbar></Toolbar>
         </AppBar>
-        <Box component={"main"} sx={{ p: 3 }}>
-          <Container>
-            <Grid container spacing={16}>
-              <Grid item xs={12}>
-                {scene == "exercise" && <ExercisesScene />}
-                <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-                  <BottomNavigation value={scene} onChange={handleChange} showLabels>
-                    <BottomNavigationAction value="traning" label="Тренировки" icon={<FitnessCenterIcon />} />
-                    <BottomNavigationAction value="exercise" label="Упражнения" icon={<FitbitIcon />} />
-                  </BottomNavigation>
-                </Paper>
-              </Grid>
-            </Grid>
-          </Container>
+        <Box component={"main"} sx={{ p: 1, width: '100%' }}>
+          {scene == "exercise" && <ExercisesScene />}
+          {scene == "traning" && <TraningScene />}
+          <Navigation activeScene={scene} handleChange={handleChange}/>
         </Box>
       </ThemeProvider>
-    </div>
+    </Box>
 
   );
 }
