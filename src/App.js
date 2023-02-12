@@ -11,27 +11,52 @@ import CssBaseline from '@mui/material/CssBaseline';
 import ExercisesScene from "./components/scenes/ExercisesScene";
 import TraningScene from "./components/scenes/TraningScene";
 import Navigation from "./components/base/Navigation";
+import { ExercisesGrouped } from "./components/Constants";
 
 const darkTheme = createTheme({
   palette: {
     primary: {
-      main: "#CFCCD6",
-      light: "#F4F4F6",
-      dark: "#A5A5B6",
+      main: "#EAE1DF",
+      light: "#f7f3f3",
+      dark: "#be9d9d",
       contrastText: "#322E18"
     },
     secondary: {
-      main: "#B7B5E4",
-      light: "#E2E1F4",
-      dark: "#9A97D8"
+      main: "#545E56",
+      light: "#EAECEA",
+      dark: "#A9B1A9"
+    },
+    background: {
+      default: "#f7f3f3"
     }
   },
   shape: {
     borderRadius: '8px'
+  },
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
   }
 });
 
+const initExercises = () => {
+  if(localStorage.getItem("exercises") == null)
+    localStorage.setItem("exercises", JSON.stringify(ExercisesGrouped))
+}
+
 function App() {
+
+  initExercises();
 
   const [scene, setScene] = useState("exercise")
 
@@ -42,7 +67,7 @@ function App() {
   const theme = useTheme();
 
   return (
-    <Box sx={{ display: 'flex', height: '100%', justifyContent: 'center', pb: 7 }}>
+    <Box sx={{ display: 'flex', height: '100%', justifyContent: 'center', pb: 7}}>
       <CssBaseline />
       <ThemeProvider theme={darkTheme}>
         <Box component={"main"} sx={{ p: 1, width: '100%' , height: '100%', overflowY: "scroll", pb: 10}}>

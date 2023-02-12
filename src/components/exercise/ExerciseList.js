@@ -1,15 +1,14 @@
-import { Accordion as MuiAccordion, AccordionDetails as MuiAccordionDetails, AccordionSummary as MuiAccordionSummary, Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Accordion as MuiAccordion, AccordionDetails as MuiAccordionDetails, AccordionSummary as MuiAccordionSummary, Badge, Button } from "@mui/material";
+import React, { useState } from "react";
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import { Box, styled } from "@mui/system";
-import { ExercisesGrouped, ModalTypeInfo, MuscleGroupsEnum, MuscleGroupsInfo } from "../Constants";
+import { ModalTypeInfo, MuscleGroupsEnum, MuscleGroupsInfo } from "../Constants";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
-    border: `1px solid ${theme.palette.divider}`,
     '&:not(:last-child)': {
         borderBottom: 0,
     },
@@ -24,10 +23,7 @@ const AccordionSummary = styled((props) => (
         {...props}
     />
 ))(({ theme }) => ({
-    backgroundColor:
-        theme.palette.mode === 'dark'
-            ? 'rgba(255, 255, 255, .05)'
-            : 'rgba(0, 0, 0, .03)',
+    backgroundColor: theme.palette.primary.light,
     flexDirection: 'row-reverse',
     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
         transform: 'rotate(90deg)',
@@ -43,11 +39,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 const ExerciseList = (props) => {
-    const [exercises, setExercises] = useState({})
     const [expanded, setExpanded] = useState(null)
-    useEffect(() => {
-        setExercises(ExercisesGrouped);
-    }, [])
 
     const handleChangeExpanded = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
@@ -58,7 +50,11 @@ const ExerciseList = (props) => {
         props.onClick(e, ModalTypeInfo, exercise);
     }
 
-    MuscleGroupsEnum.map(m => console.log(exercises[m]))
+    const calcCount = (type) => {
+        if (props.exercises == null)
+            return 0;
+        return props.exercises[type] == undefined ? 0 : props.exercises[type].length;
+    }
 
     return <div>
         {MuscleGroupsEnum.map((type, idx) => <Accordion
@@ -69,10 +65,13 @@ const ExerciseList = (props) => {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header">
-                {MuscleGroupsInfo[type].locale}
+                <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%", alignItems: "center", pr: 2 }}>
+                    {MuscleGroupsInfo[type].locale}
+                    <Badge showZero badgeContent={calcCount(type)} color="secondary"></Badge>
+                </Box>
             </AccordionSummary>
             <AccordionDetails>
-                {exercises[type] != undefined && exercises[type].map((exercise, index) => <Box key={index}>
+                {(props.exercises != null && props.exercises[type] != undefined) && props.exercises[type].map((exercise, index) => <Box key={index}>
                     <Button
                         color="secondary"
                         onClick={(e) => onClickToExercise(e, exercise)}

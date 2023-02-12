@@ -8,11 +8,8 @@ const AddButton = props => {
         <Button
             variant="contained"
             fullWidth
-            sx={{
-                backgroundColor: "#322E18",
-                color: "#fff",
-                p:2
-            }}
+            color="secondary"
+            sx={{ p: 2 }}
             onClick={props.onClick}>
             {props.text}
         </Button>

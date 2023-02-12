@@ -65,6 +65,11 @@ export const ExercisesGrouped = {
         "id": "1",
         "title": "Подъем штанги на бицепс",
         "muscle": "BICEPS"
+    },
+    {
+        "id": "15",
+        "title": "Молотки с гантелями",
+        "muscle": "BICEPS"
     }], 
     "TRICEPS": [{
         "id": "2",
@@ -94,6 +99,16 @@ export const ExercisesGrouped = {
     "SHOULDERS":[{
         "id": "7",
         "title": "Махи с шагтелями в стороны",
+        "muscle": "SHOULDERS"
+    },
+    {
+        "id": "16",
+        "title": "Армейский жим",
+        "muscle":"SHOULDERS"
+    },
+    {
+        "id": "16",
+        "title": "Жим гантелей сидя",
         "muscle": "SHOULDERS"
     }], 
     "HAMSTRINGS":[{
