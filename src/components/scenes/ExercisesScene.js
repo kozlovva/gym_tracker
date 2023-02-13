@@ -1,9 +1,10 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { GetExercises, SetExercises } from "../../api/ExercisesAPI";
+import React, { useState } from "react";
+import { AddExercises, RemoveExercises, UpdateExercise } from "../../api/ExercisesAPI";
 import AddButton from "../base/AddButton";
 import Modal from "../base/Modal";
-import { ModalTypeAdd, ModalTypeInfo } from "../Constants";
+import { DefaultExercise, ModalTypeAdd, ModalTypeInfo } from "../Constants";
+import CreateExercise from "../exercise/CreateExercise";
 import ExerciseInfo from "../exercise/ExerciseInfo";
 import ExerciseList from "../exercise/ExerciseList";
 
@@ -13,34 +14,19 @@ const defaultModalState = {
     title: null
 };
 
+
 const ExercisesScene = props => {
     const [modalInfo, setModalInfo] = useState(defaultModalState);
     const [selectedExercice, setSelectedExercise] = useState(null);
-    const [exercises, setExercises] = useState(null)
-
-    useEffect(() => {
-        var items = GetExercises();
-        setExercises(items);
-    }, [])
-
-    useEffect(() => {
-        if (exercises != undefined && exercises != null) {
-            console.log("Update local storage...")
-            SetExercises(exercises)
-        }
-    }, [exercises])
 
     const handleChangeExercise = (e, field) => {
-        var exersice = selectedExercice;
-        exersice[field] = e.target.value;
-        setSelectedExercise({ ...exersice });
+        var exercise = selectedExercice;
+        exercise[field] = e.target.value;
+        setSelectedExercise({ ...exercise });
     }
 
     const removeExercise = () => {
-        setExercises({
-            ...exercises, 
-            [selectedExercice.muscle]: exercises[selectedExercice.muscle].filter(e => e.id != selectedExercice.id)
-        })
+        RemoveExercises(selectedExercice.id)
         closeModal();
     }
 
@@ -62,10 +48,20 @@ const ExercisesScene = props => {
         }
     }
 
+    const saveExercise = (e) => {
+        UpdateExercise(selectedExercice);
+        closeModal();
+    }
+
+    const addExeecise = (e) => {
+        AddExercises(selectedExercice);
+        closeModal();
+    }
+
     return <Box sx={{
         height: "100%", overflow: "scroll",
     }}>
-        <ExerciseList onClick={onChangeModal} exercises={exercises} />
+        <ExerciseList onClick={onChangeModal} />
         <Modal
             open={modalInfo.open}
             onClose={(e) => onChangeModal(e, null, null)}
@@ -73,10 +69,15 @@ const ExercisesScene = props => {
             {modalInfo.type == ModalTypeInfo && <ExerciseInfo
                 onChange={handleChangeExercise}
                 exercise={selectedExercice}
-                onRemove={removeExercise} />}
+                onRemove={removeExercise}
+                onSave={saveExercise} />}
+            {modalInfo.type == ModalTypeAdd && <CreateExercise
+                onChange={handleChangeExercise}
+                exercise={selectedExercice}
+                onSave={addExeecise} />}
         </Modal>
 
-        <AddButton text="Создать упражнение" onClick={(e) => onChangeModal(e, ModalTypeAdd, null)} />
+        <AddButton text="Создать упражнение" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultExercise)} />
     </Box>
 }
 

@@ -5,6 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import { Box, styled } from "@mui/system";
 import { ModalTypeInfo, MuscleGroupsEnum, MuscleGroupsInfo } from "../Constants";
+import { CountExercisesByMuscle, GetExercisesByMuscle } from "../../api/ExercisesAPI";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -50,28 +51,26 @@ const ExerciseList = (props) => {
         props.onClick(e, ModalTypeInfo, exercise);
     }
 
-    const calcCount = (type) => {
-        if (props.exercises == null)
-            return 0;
-        return props.exercises[type] == undefined ? 0 : props.exercises[type].length;
+    const calcCount = (muscle) => {
+        return CountExercisesByMuscle(muscle);
     }
 
     return <div>
-        {MuscleGroupsEnum.map((type, idx) => <Accordion
+        {MuscleGroupsEnum.map((muscle, idx) => <Accordion
             key={idx}
-            expanded={expanded == type}
-            onChange={handleChangeExpanded(type)}>
+            expanded={expanded == muscle}
+            onChange={handleChangeExpanded(muscle)}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header">
                 <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%", alignItems: "center", pr: 2 }}>
-                    {MuscleGroupsInfo[type].locale}
-                    <Badge showZero badgeContent={calcCount(type)} color="secondary"></Badge>
+                    {MuscleGroupsInfo[muscle].locale}
+                    <Badge showZero badgeContent={calcCount(muscle)} color="secondary"></Badge>
                 </Box>
             </AccordionSummary>
             <AccordionDetails>
-                {(props.exercises != null && props.exercises[type] != undefined) && props.exercises[type].map((exercise, index) => <Box key={index}>
+                {GetExercisesByMuscle(muscle).map((exercise, index) => <Box key={index}>
                     <Button
                         color="secondary"
                         onClick={(e) => onClickToExercise(e, exercise)}

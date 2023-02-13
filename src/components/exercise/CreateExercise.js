@@ -16,25 +16,16 @@ const MenuProps = {
     },
 };
 
-const ExerciseInfo = (props) => {
+const CreateExercise = (props) => {
     return <div>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', flexDirection: "column" }}>
             <ExerciseFrom
                 exercise={props.exercise}
                 onChange={props.onChange} />
 
-            <Button
-                onClick={props.onRemove}
-                fullWidth
-                color="error"
-                sx={{ justifyContent: "flex-start", mt: 1, pl: 0 }}
-                disableRipple>
-                Удалить упражнение
-            </Button>
-
-            <AddButton text="Сохранить" onClick={props.onSave} />
+            <AddButton text="Создать" onClick={props.onSave} />
         </Box>
     </div>
 };
 
-export default ExerciseInfo;
+export default CreateExercise;
