@@ -1,21 +1,13 @@
-import { Box } from "@mui/material";
-import React, { useState } from "react";
-import { AddExercises, RemoveExercises, UpdateExercise } from "../../api/ExercisesAPI";
-import AddButton from "../base/AddButton";
-import Modal from "../base/Modal";
-import { DefaultExercise, ModalTypeAdd, ModalTypeInfo } from "../Constants";
-import CreateExercise from "../exercise/CreateExercise";
-import ExerciseInfo from "../exercise/ExerciseInfo";
-import ExerciseList from "../exercise/ExerciseList";
+import { Box } from '@mui/material';
+import React, { useState } from 'react';
+import AddButton from '../base/AddButton';
+import Modal from '../base/Modal';
+import { DefaultModalState, ModalTypeAdd } from '../Constants';
+import TraningProgramList from '../program/TraningProgramList';
 
-const defaultModalState = {
-    open: false,
-    type: null,
-    title: null
-};
+const TraningProgramScene = (props) => {
 
-const ExercisesScene = props => {
-    const [modalInfo, setModalInfo] = useState(defaultModalState);
+    const [modalInfo, setModalInfo] = useState(DefaultModalState);
     const [selectedItem, setSelectedItem] = useState(null);
 
     const handleChangeExercise = (e, field) => {
@@ -25,12 +17,12 @@ const ExercisesScene = props => {
     }
 
     const removeExercise = () => {
-        RemoveExercises(selectedItem.id)
+        // RemoveExercises(selectedItem.id)
         closeModal();
     }
 
     const closeModal = () => {
-        setModalInfo(defaultModalState);
+        setModalInfo(DefaultModalState);
         setSelectedItem(null)
     }
 
@@ -48,24 +40,24 @@ const ExercisesScene = props => {
     }
 
     const saveExercise = (e) => {
-        UpdateExercise(selectedItem);
+        // UpdateExercise(selectedItem);
         closeModal();
     }
 
     const addExeecise = (e) => {
-        AddExercises(selectedItem);
+        // AddExercises(selectedItem);
         closeModal();
     }
 
     return <Box sx={{
         height: "100%", overflow: "scroll",
     }}>
-        <ExerciseList onClick={onChangeModal} />
+        <TraningProgramList onClick={onChangeModal}/>
         <Modal
             open={modalInfo.open}
             onClose={(e) => onChangeModal(e, null, null)}
             title={modalInfo.title}>
-            {modalInfo.type == ModalTypeInfo && <ExerciseInfo
+            {/* {modalInfo.type == ModalTypeInfo && <ExerciseInfo
                 onChange={handleChangeExercise}
                 exercise={selectedItem}
                 onRemove={removeExercise}
@@ -73,11 +65,14 @@ const ExercisesScene = props => {
             {modalInfo.type == ModalTypeAdd && <CreateExercise
                 onChange={handleChangeExercise}
                 exercise={selectedItem}
-                onSave={addExeecise} />}
+                onSave={addExeecise} />} */}
         </Modal>
 
-        <AddButton text="Создать упражнение" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultExercise)} />
+
+        <AddButton text="Создать программу"/>
+
+
     </Box>
 }
-
-export default ExercisesScene;
+ 
+export default TraningProgramScene;

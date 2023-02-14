@@ -8,14 +8,11 @@ import { ModalTypeInfo, MuscleGroupsEnum, MuscleGroupsInfo } from "../Constants"
 import { CountExercisesByMuscle, GetExercisesByMuscle } from "../../api/ExercisesAPI";
 
 const Accordion = styled((props) => (
-    <MuiAccordion disableGutters elevation={0} square {...props} />
+    <MuiAccordion elevation={0} {...props} />
 ))(({ theme }) => ({
     '&:not(:last-child)': {
         borderBottom: 0,
-    },
-    '&:before': {
-        display: 'none',
-    },
+    }
 }));
 
 const AccordionSummary = styled((props) => (
@@ -24,6 +21,7 @@ const AccordionSummary = styled((props) => (
         {...props}
     />
 ))(({ theme }) => ({
+    padding: theme.spacing(1),
     backgroundColor: theme.palette.primary.light,
     flexDirection: 'row-reverse',
     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {

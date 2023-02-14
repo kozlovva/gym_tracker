@@ -60,7 +60,7 @@ export const MuscleGroupsEnum = [
     "TRAPS"
 ];
 
-export const ExercisesGrouped = [
+export const DefaultExercises = [
     {
         "id": "1",
         "title": "Подъем штанги на бицепс",
@@ -155,3 +155,30 @@ export const DefaultExercise = {
     title: "",
     muscle: "BICEPS"
 }
+
+export const DefaultModalState = {
+    open: false,
+    type: null,
+    title: null
+};
+
+export const DefaultTraningPrograms = [
+    {
+        "id": "1",
+        "title": "Классический сплит",
+        "description": "",
+        "exercises": [""]
+    },
+    {
+        "id": "2",
+        "title": "Fullbody" 
+    },
+    {
+        "id": "3",
+        "title": "Тяни-толкай"
+    },
+    {
+        "id": "4",
+        "title": "Верх-низ"
+    }
+]

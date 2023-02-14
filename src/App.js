@@ -11,7 +11,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import ExercisesScene from "./components/scenes/ExercisesScene";
 import TraningScene from "./components/scenes/TraningScene";
 import Navigation from "./components/base/Navigation";
-import { ExercisesGrouped } from "./components/Constants";
+import { DefaultExercises, DefaultTraningPrograms, ExercisesGrouped } from "./components/Constants";
+import TraningProgramScene from "./components/scenes/TraningProgramScene";
 
 const darkTheme = createTheme({
   palette: {
@@ -51,14 +52,16 @@ const darkTheme = createTheme({
 
 const initExercises = () => {
   if(localStorage.getItem("exercises") == null)
-    localStorage.setItem("exercises", JSON.stringify(ExercisesGrouped))
+    localStorage.setItem("exercises", JSON.stringify(DefaultExercises))
+  if(localStorage.getItem("traning_programs") == null)
+    localStorage.setItem("traning_programs", JSON.stringify(DefaultTraningPrograms))
 }
 
 function App() {
 
   initExercises();
 
-  const [scene, setScene] = useState("exercise")
+  const [scene, setScene] = useState("program")
 
   const handleChange = (event, newValue) => {
     setScene(newValue);
@@ -73,6 +76,7 @@ function App() {
         <Box component={"main"} sx={{ p: 1, width: '100%' , height: '100%', overflowY: "scroll", pb: 10}}>
           {scene == "exercise" && <ExercisesScene />}
           {scene == "traning" && <TraningScene />}
+          {scene == "program" && <TraningProgramScene />}
           <Navigation activeScene={scene} handleChange={handleChange}/>
         </Box>
       </ThemeProvider>
