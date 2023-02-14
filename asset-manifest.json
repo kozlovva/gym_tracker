@@ -10,12 +10,12 @@
   "runtime~main.js": "/gym_tracker/static/js/runtime~main.e4c4e017.js",
   "runtime~main.js.map": "/gym_tracker/static/js/runtime~main.e4c4e017.js.map",
   "static/media/300.css": "/gym_tracker/static/media/roboto-latin-ext-300-normal.716871ec.woff2",
-  "static/media/400.css": "/gym_tracker/static/media/roboto-vietnamese-400-normal.ca3b09b6.woff2",
-  "static/media/500.css": "/gym_tracker/static/media/roboto-latin-500-normal.3a44e06e.woff2",
-  "static/media/700.css": "/gym_tracker/static/media/roboto-latin-ext-700-normal.deb26e9b.woff2",
+  "static/media/400.css": "/gym_tracker/static/media/roboto-latin-400-normal.15d9f621.woff2",
+  "static/media/500.css": "/gym_tracker/static/media/roboto-latin-ext-500-normal.e36fccd0.woff2",
+  "static/media/700.css": "/gym_tracker/static/media/roboto-latin-700-normal.e9f5aaf5.woff2",
   "static/css/main.cc75d3a3.chunk.css.map": "/gym_tracker/static/css/main.cc75d3a3.chunk.css.map",
   "static/css/2.075a1e72.chunk.css.map": "/gym_tracker/static/css/2.075a1e72.chunk.css.map",
   "index.html": "/gym_tracker/index.html",
-  "precache-manifest.147d986bc9586ed38cedfca95392f035.js": "/gym_tracker/precache-manifest.147d986bc9586ed38cedfca95392f035.js",
+  "precache-manifest.16e769abc586bb9e52e3b409b6860496.js": "/gym_tracker/precache-manifest.16e769abc586bb9e52e3b409b6860496.js",
   "service-worker.js": "/gym_tracker/service-worker.js"
 }
