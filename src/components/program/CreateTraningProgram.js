@@ -4,7 +4,7 @@ import React from 'react';
 import AddButton from '../base/AddButton';
 import TraningProgramForm from './TraningProgramForm';
 
-const TraningProgramInfo = props => {
+const CreateTraningProgram = props => {
     return <div>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', flexDirection: "column", pb: 16 }}>
             <TraningProgramForm
@@ -13,18 +13,9 @@ const TraningProgramInfo = props => {
                 setExercises={props.setExercises}
                 onSave={props.setExercises}/>
 
-            <Button
-                onClick={props.onRemove}
-                fullWidth
-                color="error"
-                sx={{ justifyContent: "flex-start", mt: 1, pl: 0 }}
-                disableRipple>
-                Удалить программу
-            </Button>
-
             <AddButton text="Сохранить" onClick={props.onSave} />
         </Box>
     </div>
 }
  
-export default TraningProgramInfo;
+export default CreateTraningProgram;

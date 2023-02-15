@@ -73,7 +73,7 @@ const ExerciseList = (props) => {
                         color="secondary"
                         onClick={(e) => onClickToExercise(e, exercise)}
                         fullWidth
-                        sx={{ justifyContent: "flex-start" }}
+                        sx={{ justifyContent: "flex-start", textAlign: "left" }}
                         disableRipple>
                         {exercise.title}
                     </Button>

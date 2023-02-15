@@ -70,7 +70,7 @@ function App() {
   const theme = useTheme();
 
   return (
-    <Box sx={{ display: 'flex', height: '100%', justifyContent: 'center', pb: 7}}>
+    <Box sx={{ display: 'flex', height: '100%', justifyContent: 'center', pb: 7, pt: 0}}>
       <CssBaseline />
       <ThemeProvider theme={darkTheme}>
         <Box component={"main"} sx={{ p: 1, width: '100%' , height: '100%', overflowY: "scroll", pb: 10}}>

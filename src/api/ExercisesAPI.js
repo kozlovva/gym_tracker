@@ -38,3 +38,8 @@ export const UpdateExercise = exercise => {
 export const CountExercisesByMuscle = muscle => {
     return GetExercisesByMuscle(muscle).length;
 }
+
+export const GetExerciseById = id => {
+    const exercises = GetExercises();
+    return exercises.find(e => e.id == id); 
+}

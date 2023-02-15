@@ -1,3 +1,5 @@
+import {v4 as uuidv4} from 'uuid';
+
 export const MuscleGroupsInfo = {
     "BICEPS": {
         "locale": "Бицепс"
@@ -67,6 +69,16 @@ export const DefaultExercises = [
         "muscle": "BICEPS"
     },
     {
+        "id": "18",
+        "title": "Подтягивания обратным хватом",
+        "muscle": "BICEPS"
+    },
+    {
+        "id": "19",
+        "title": "Подъем гантелей в скамье Скотта",
+        "muscle": "BICEPS"
+    },
+    {
         "id": "15",
         "title": "Молотки с гантелями",
         "muscle": "BICEPS"
@@ -77,13 +89,58 @@ export const DefaultExercises = [
         "muscle": "TRICEPS"
     }, 
     {
+        "id": "20",
+        "title": "Французский со штангой",
+        "muscle": "TRICEPS"
+    }, 
+    {
+        "id": "21",
+        "title": "Жим лежа узким хватом",
+        "muscle": "TRICEPS"
+    },
+    {
+        "id": "22",
+        "title": "Разгибания на трицепс в верхнем блоке",
+        "muscle": "TRICEPS"
+    }, 
+    {
         "id": "3",
         "title": "Приседания со штангой",
         "muscle": "QUADS"
     }, 
     {
+        "id": "23",
+        "title": "Жим ногами",
+        "muscle": "QUADS"
+    }, 
+    {
+        "id": "24",
+        "title": "Разгибания в блоке на квадрицепс",
+        "muscle": "QUADS"
+    },
+    {
+        "id": "25",
+        "title": "Выпады с гантелей",
+        "muscle": "QUADS"
+    },  
+    {
         "id": "4",
         "title": "Отведения ноги в блоке",
+        "muscle": "GLUTES"
+    }, 
+    {
+        "id": "26",
+        "title": "Ягодичный мост",
+        "muscle": "GLUTES"
+    }, 
+    {
+        "id": "27",
+        "title": "Глубокие приседания с широкой постановкой ног",
+        "muscle": "GLUTES"
+    }, 
+    {
+        "id": "28",
+        "title": "Отведение ног в стороны в тренажере",
         "muscle": "GLUTES"
     }, 
     {
@@ -92,8 +149,23 @@ export const DefaultExercises = [
         "muscle": "ABS"
     }, 
     {
+        "id": "29",
+        "title": "Скручивания в висе на перекладине",
+        "muscle": "ABS"
+    }, 
+    {
         "id": "6",
         "title": "Жим со штангой лежа",
+        "muscle": "CHEST"
+    }, 
+    {
+        "id": "30",
+        "title": "Жим со штангой лежа на наклонной скамье",
+        "muscle": "CHEST"
+    }, 
+    {
+        "id": "31",
+        "title": "Бабочка",
         "muscle": "CHEST"
     }, 
     {
@@ -107,7 +179,7 @@ export const DefaultExercises = [
         "muscle":"SHOULDERS"
     },
     {
-        "id": "16",
+        "id": "17",
         "title": "Жим гантелей сидя",
         "muscle": "SHOULDERS"
     }, 
@@ -152,6 +224,7 @@ export const ModalTypeInfo = "INFO";
 export const ModalTypeAdd = "ADD";
 
 export const DefaultExercise = {
+    "id": uuidv4(),
     title: "",
     muscle: "BICEPS"
 }
@@ -162,23 +235,54 @@ export const DefaultModalState = {
     title: null
 };
 
+export const DefaultTraningProgram = {
+    "id": uuidv4(),
+    "title": "",
+    "description": "",
+    "exercises": []
+}
+
 export const DefaultTraningPrograms = [
     {
         "id": "1",
-        "title": "Классический сплит",
+        "title": "Спина-трицепс",
         "description": "",
-        "exercises": [""]
+        "exercises": ["1", "2"]
     },
     {
         "id": "2",
-        "title": "Fullbody" 
+        "title": "Грудь-бицепс" ,
+        "description": "",
+        "exercises": []
     },
     {
         "id": "3",
-        "title": "Тяни-толкай"
+        "title": "Ноги-плечи",
+        "description": "",
+        "exercises": []
     },
     {
         "id": "4",
-        "title": "Верх-низ"
+        "title": "Тяни (спина-бицепс)",
+        "description": "",
+        "exercises": []
+    },
+    {
+        "id": "5",
+        "title": "Тяни (ноги-плечи)",
+        "description": "",
+        "exercises": []
+    },
+    {
+        "id": "6",
+        "title": "Толкай (грудь-трицепс)",
+        "description": "",
+        "exercises": []
+    },
+    {
+        "id": "7",
+        "title": "Толкай (ноги-плечи)",
+        "description": "",
+        "exercises": []
     }
 ]

@@ -1,23 +1,25 @@
 import { Box } from '@mui/material';
 import React, { useState } from 'react';
+import { AddTraningProgram, RemoveTraningProgram, UpdateTraningProgram } from '../../api/TraningProgramAPI';
 import AddButton from '../base/AddButton';
 import Modal from '../base/Modal';
-import { DefaultModalState, ModalTypeAdd } from '../Constants';
+import { DefaultModalState, DefaultTraningProgram, ModalTypeAdd, ModalTypeInfo } from '../Constants';
+import CreateTraningProgram from '../program/CreateTraningProgram';
+import TraningProgramInfo from '../program/TraningProgramInfo';
 import TraningProgramList from '../program/TraningProgramList';
 
 const TraningProgramScene = (props) => {
-
     const [modalInfo, setModalInfo] = useState(DefaultModalState);
     const [selectedItem, setSelectedItem] = useState(null);
 
-    const handleChangeExercise = (e, field) => {
+    const handleChangeItem = (e, field) => {
         var item = selectedItem;
         item[field] = e.target.value;
         setSelectedItem({ ...item });
     }
 
-    const removeExercise = () => {
-        // RemoveExercises(selectedItem.id)
+    const removeItem = () => {
+        RemoveTraningProgram(selectedItem.id)
         closeModal();
     }
 
@@ -33,20 +35,24 @@ const TraningProgramScene = (props) => {
             setModalInfo({
                 open: true,
                 type: type,
-                title: type == ModalTypeAdd ? "Создание упражнения" : null
+                title: type == ModalTypeAdd ? "Создание программы" : null
             });
             setSelectedItem({ ...item });
         }
     }
 
-    const saveExercise = (e) => {
-        // UpdateExercise(selectedItem);
+    const saveItem = (e) => {
+        UpdateTraningProgram(selectedItem);
         closeModal();
     }
 
-    const addExeecise = (e) => {
-        // AddExercises(selectedItem);
+    const addItem = (e) => {
+        AddTraningProgram(selectedItem);
         closeModal();
+    }
+
+    const setExercises = (exercises) => {
+        setSelectedItem({...selectedItem, exercises: exercises})
     }
 
     return <Box sx={{
@@ -57,19 +63,21 @@ const TraningProgramScene = (props) => {
             open={modalInfo.open}
             onClose={(e) => onChangeModal(e, null, null)}
             title={modalInfo.title}>
-            {/* {modalInfo.type == ModalTypeInfo && <ExerciseInfo
-                onChange={handleChangeExercise}
-                exercise={selectedItem}
-                onRemove={removeExercise}
-                onSave={saveExercise} />}
-            {modalInfo.type == ModalTypeAdd && <CreateExercise
-                onChange={handleChangeExercise}
-                exercise={selectedItem}
-                onSave={addExeecise} />} */}
+            {modalInfo.type == ModalTypeInfo && <TraningProgramInfo
+                onChange={handleChangeItem}
+                item={selectedItem}
+                onRemove={removeItem}
+                onSave={saveItem}
+                setExercises={setExercises} />}
+            {modalInfo.type == ModalTypeAdd && <CreateTraningProgram
+                onChange={handleChangeItem}
+                item={selectedItem}
+                onSave={addItem}
+                setExercises={setExercises} />}
         </Modal>
 
 
-        <AddButton text="Создать программу"/>
+        <AddButton text="Создать программу" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultTraningProgram)}/>
 
 
     </Box>
