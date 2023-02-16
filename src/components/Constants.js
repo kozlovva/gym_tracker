@@ -223,10 +223,12 @@ export const DefaultExercises = [
 export const ModalTypeInfo = "INFO";
 export const ModalTypeAdd = "ADD";
 
-export const DefaultExercise = {
-    "id": uuidv4(),
-    title: "",
-    muscle: "BICEPS"
+export const DefaultExercise = () => {
+    return {
+        "id": uuidv4(),
+        title: "",
+        muscle: "BICEPS"
+    }
 }
 
 export const DefaultModalState = {
@@ -235,11 +237,13 @@ export const DefaultModalState = {
     title: null
 };
 
-export const DefaultTraningProgram = {
-    "id": uuidv4(),
-    "title": "",
-    "description": "",
-    "exercises": []
+export const DefaultTraningProgram = () => {
+    return {
+        "id": uuidv4(),
+        "title": "",
+        "description": "",
+        "exercises": []
+    }
 }
 
 export const DefaultTraningPrograms = [
@@ -286,3 +290,13 @@ export const DefaultTraningPrograms = [
         "exercises": []
     }
 ]
+
+export const DefaultTraning = () =>  {
+    return {
+        "id": uuidv4(),
+        "traningProgramId": "",
+        "duration": "",
+        "startAt": "",
+        "endAt": ""
+    }
+}

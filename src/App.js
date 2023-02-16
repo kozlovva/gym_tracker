@@ -1,88 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import './App.css';
-import { AppBar, Box, Toolbar } from '@mui/material';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import ExercisesScene from "./components/scenes/ExercisesScene";
-import TraningScene from "./components/scenes/TraningScene";
-import Navigation from "./components/base/Navigation";
-import { DefaultExercises, DefaultTraningPrograms, ExercisesGrouped } from "./components/Constants";
-import TraningProgramScene from "./components/scenes/TraningProgramScene";
+import { DefaultExercises, DefaultTraningPrograms } from "./components/Constants";
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 
-const darkTheme = createTheme({
-  palette: {
-    primary: {
-      main: "#EAE1DF",
-      light: "#f7f3f3",
-      dark: "#be9d9d",
-      contrastText: "#322E18"
-    },
-    secondary: {
-      main: "#545E56",
-      light: "#EAECEA",
-      dark: "#A9B1A9"
-    },
-    background: {
-      default: "#f7f3f3"
-    }
-  },
-  shape: {
-    borderRadius: '8px'
-  },
-  typography: {
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-  }
-});
+import TraningScene from "./components/scenes/TraningScene";
+import ExercisesScene from "./components/scenes/ExercisesScene";
+import TraningProgramScene from "./components/scenes/TraningProgramScene";
+import Layout from "./components/base/Layout";
+import TraningProcessScene from "./components/scenes/TraningProcessScene";
 
 const initExercises = () => {
-  if(localStorage.getItem("exercises") == null)
+  if (localStorage.getItem("exercises") == null)
     localStorage.setItem("exercises", JSON.stringify(DefaultExercises))
-  if(localStorage.getItem("traning_programs") == null)
+  if (localStorage.getItem("traning_programs") == null)
     localStorage.setItem("traning_programs", JSON.stringify(DefaultTraningPrograms))
 }
 
-function App() {
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<TraningScene />} />
+      <Route path="exercises" element={<ExercisesScene />} />
+      <Route path="traning-programs" element={<TraningProgramScene />} />
+      <Route path="traning" element={<TraningScene />} />
+      <Route path="workout-process/:workoutId" element={<TraningProcessScene />} />
+    </Route>
+  )
+);
 
+const App = () => {
   initExercises();
-
-  const [scene, setScene] = useState("program")
-
-  const handleChange = (event, newValue) => {
-    setScene(newValue);
-  };
-
-  const theme = useTheme();
-
-  return (
-    <Box sx={{ display: 'flex', height: '100%', justifyContent: 'center', pb: 7, pt: 0}}>
-      <CssBaseline />
-      <ThemeProvider theme={darkTheme}>
-        <Box component={"main"} sx={{ p: 1, width: '100%' , height: '100%', overflowY: "scroll", pb: 10}}>
-          {scene == "exercise" && <ExercisesScene />}
-          {scene == "traning" && <TraningScene />}
-          {scene == "program" && <TraningProgramScene />}
-          <Navigation activeScene={scene} handleChange={handleChange}/>
-        </Box>
-      </ThemeProvider>
-    </Box>
-
-  );
+  return (<RouterProvider router={router} />);
 }
 
 export default App;

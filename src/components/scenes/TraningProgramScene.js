@@ -7,8 +7,8 @@ import { DefaultModalState, DefaultTraningProgram, ModalTypeAdd, ModalTypeInfo }
 import CreateTraningProgram from '../program/CreateTraningProgram';
 import TraningProgramInfo from '../program/TraningProgramInfo';
 import TraningProgramList from '../program/TraningProgramList';
-
-const TraningProgramScene = (props) => {
+ 
+export const TraningProgramScene = (props) => {
     const [modalInfo, setModalInfo] = useState(DefaultModalState);
     const [selectedItem, setSelectedItem] = useState(null);
 
@@ -77,7 +77,7 @@ const TraningProgramScene = (props) => {
         </Modal>
 
 
-        <AddButton text="Создать программу" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultTraningProgram)}/>
+        <AddButton text="Создать программу" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultTraningProgram())}/>
 
 
     </Box>

@@ -1,27 +1,119 @@
-import { Divider } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Card, CardActionArea, CardHeader, Divider, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { GetTraningPrograms } from "../../api/TraningProgramAPI";
 import AddButton from "../base/AddButton";
+import Modal from "../base/Modal";
+import TraningProgramCard from "../program/TraningProgramCard";
+import { CreateTraning, GetTodayTranings, GetTraningHistory } from "../service/TraningService";
+import { GetTraningProgramById } from "../service/TraningProgramService";
 import TraningCard from "../traning/TraningCard";
+import { useNavigate } from "react-router-dom";
 
-const TraningScene = props => {
-    const [tranings, setTranings] = useState([{
-        "title": "Толкай",
-        "date": "2022-10-10",
-        "status": "ACTIVE",
-        "duration": "120"
-    }])
+const EmptyResult = () => <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
+    <Typography variant="caption">Пока тренировок нет</Typography>
+</Box>
 
-    return <div>
-        {tranings.map((traning, idx) =>
-            <TraningCard
-                key={idx}
-                title={traning.title}
-                date={traning.date}
-                duration={traning.duration} />
-        )}
-        <Divider light sx={{mt: 2}}></Divider>
-        <AddButton text="Добавить тренировку" />
-    </div>
+export const TraningScene = props => {
+    const [todayTranings, setTodayTranings] = useState([])
+    const [traningHistory, setTraningHistory] = useState([])
+    const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const todayTranings = GetTodayTranings();
+        setTodayTranings(todayTranings);
+        const traningHistory = GetTraningHistory();
+        setTraningHistory(traningHistory)
+    }, [])
+
+    const onStart = async (e, modaType, traningProgram) => {
+        const workout = await CreateTraning(traningProgram.id);
+        navigateToWorkout(workout.id)
+    }
+
+    const handleChangeOpen = () => {
+        setIsOpen(!isOpen)
+    }
+
+    const closeModal = () => {
+        handleChangeOpen();
+    }
+
+    const onChangeModal = () => {
+        if (isOpen) {
+            closeModal();
+        } else {
+            handleChangeOpen();
+        }
+    }
+
+    const navigateToWorkout = id => {
+        navigate(`/workout-process/${id}`)
+    }
+
+    return <Box sx={{
+        height: "100%", overflow: "scroll",
+    }}>
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
+            <Typography>Сегодня</Typography>
+        </Box>
+        {todayTranings.length > 0
+            ? <Grid container spacing={2}>
+                {todayTranings.map((traning, idx) =>
+                    <Grid item key={idx} xs={12}>
+                        <TraningCard
+                            onClick={() => {navigateToWorkout(traning.id)}}
+                            title={GetTraningProgramById(traning.traningProgramId).title}
+                            date={traning.date}
+                            duration={traning.duration} />
+                    </Grid>
+                )}
+            </Grid>
+            : <EmptyResult />}
+
+
+
+        <Divider light sx={{ mt: 2, mb: 2 }}></Divider>
+
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
+            <Typography>История</Typography>
+        </Box>
+
+        {traningHistory.length > 0
+            ? <Grid container spacing={2}>
+                {traningHistory.map((traning, idx) =>
+                    <Grid item key={idx} xs={12}>
+                        <TraningCard
+                            title={GetTraningProgramById(traning.traningProgramId).title}
+                            date={traning.date}
+                            duration={traning.duration} />
+                    </Grid>
+                )}
+            </Grid>
+            : <EmptyResult />}
+
+
+        <Modal
+            open={isOpen}
+            onClose={() => onChangeModal(null)}
+            title="Выбери программу тренировок">
+            <Grid container spacing={2}>
+                {GetTraningPrograms().map((item, idx) => <Grid item xs={12} key={idx}>
+                    <TraningProgramCard
+                        onClick={onStart}
+                        key={idx}
+                        item={item}
+                        showCount={false}
+                        sx={{ minHeight: "80px" }} />
+                </Grid>
+                )}
+            </Grid>
+
+
+        </Modal>
+
+        <AddButton text="Начать тренировку!" onClick={onChangeModal} />
+    </Box>
 }
 
 export default TraningScene;

@@ -7,13 +7,19 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TextWithIcon from '../base/TextWithIcon';
 
+
+
 const TraningCard = (props) => {
-    return <Card sx={{ display: 'flex' }}>
+    return <Card
+        onClick={props.onClick}
+        sx={{
+            display: 'flex',
+            backgroundColor: "#FBAB7E",
+            backgroundImage: 'linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)'
+        }}>
         <CardActionArea>
             <CardHeader title={props.title}>
-
             </CardHeader>
-            <CardMedia sx={{ height: 140 }} image='https://www.hussle.com/blog/wp-content/uploads/2020/12/Gym-structure-1080x675.png' />
             <CardActions sx={{ justifyContent: "flex-end", p: 2 }}>
                 <Box sx={{ display: 'flex', flexDirection: "column", flex: "1 0 auto" }}>
                 </Box>
@@ -21,9 +27,9 @@ const TraningCard = (props) => {
                     <TextWithIcon
                         icon={<CalendarMonthIcon />}
                         text={props.date} />
-                    <TextWithIcon 
-                    icon={<AccessTimeIcon />}
-                    text={`${props.duration} минут`}/>
+                    <TextWithIcon
+                        icon={<AccessTimeIcon />}
+                        text={`${props.duration} минут`} />
                 </Box>
             </CardActions>
         </CardActionArea>

@@ -76,7 +76,7 @@ const ExercisesScene = props => {
                 onSave={addExeecise} />}
         </Modal>
 
-        <AddButton text="Создать упражнение" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultExercise)} />
+        <AddButton text="Создать упражнение" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultExercise())} />
     </Box>
 }
 
