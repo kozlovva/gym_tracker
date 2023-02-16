@@ -6,7 +6,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import { DefaultExercises, DefaultTraningPrograms } from "./components/Constants";
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createHashRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 
 import TraningScene from "./components/scenes/TraningScene";
 import ExercisesScene from "./components/scenes/ExercisesScene";
@@ -21,7 +21,7 @@ const initExercises = () => {
     localStorage.setItem("traning_programs", JSON.stringify(DefaultTraningPrograms))
 }
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<TraningScene />} />

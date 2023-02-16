@@ -44,7 +44,12 @@ const Layout = ({children}) => {
     const location = useLocation();
     const navigate = useNavigate();
     useEffect(() => {
-        setScene(location.pathname.substring(1))
+        const path = location.pathname.substring(1);
+        if (path.length == 0) {
+            setScene("traning")
+        } else {
+            setScene(path)
+        }
     }, [location])
 
     const handleChange = (event, newValue) => {
