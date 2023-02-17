@@ -11,11 +11,11 @@
   "runtime~main.js.map": "/gym_tracker/static/js/runtime~main.1b12756d.js.map",
   "static/media/300.css": "/gym_tracker/static/media/roboto-latin-300-normal.b9c29351.woff2",
   "static/media/400.css": "/gym_tracker/static/media/roboto-latin-400-normal.15d9f621.woff2",
-  "static/media/500.css": "/gym_tracker/static/media/roboto-latin-500-normal.3a44e06e.woff2",
+  "static/media/500.css": "/gym_tracker/static/media/roboto-latin-ext-500-normal.e36fccd0.woff2",
   "static/media/700.css": "/gym_tracker/static/media/roboto-latin-700-normal.e9f5aaf5.woff2",
-  "static/css/main.cbcbcc76.chunk.css.map": "/gym_tracker/static/css/main.cbcbcc76.chunk.css.map",
   "static/css/2.922754a6.chunk.css.map": "/gym_tracker/static/css/2.922754a6.chunk.css.map",
+  "static/css/main.cbcbcc76.chunk.css.map": "/gym_tracker/static/css/main.cbcbcc76.chunk.css.map",
   "index.html": "/gym_tracker/index.html",
-  "precache-manifest.8cbcc8640e4f05628719963aebed5cfb.js": "/gym_tracker/precache-manifest.8cbcc8640e4f05628719963aebed5cfb.js",
+  "precache-manifest.a01945b21eea9676ed9d5a8a37bcf8ad.js": "/gym_tracker/precache-manifest.a01945b21eea9676ed9d5a8a37bcf8ad.js",
   "service-worker.js": "/gym_tracker/service-worker.js"
 }
