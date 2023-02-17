@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { GetExerciseById } from '../../api/ExercisesAPI';
 import Modal from '../base/Modal';
 import ExercisesSelector from '../exercise/ExercisesSelector';
+import SetsTable from './SetsTable';
 
 const GenerateExercise = id => {
     return {
@@ -74,6 +75,21 @@ const TraningProgramForm = props => {
         }))
     }
 
+    const addSet = (exercise) => {
+        let target = selected.find(e => e.id == exercise.id);
+        target.sets.push({
+            repeats: 10,
+            wieght: 0,
+            completed: false
+        });
+        setSelected(selected.map(e => {
+            if (e.id == target.id)
+                return target;
+
+            return e;
+        }))
+    }
+
     return <Box>
         <TextField
             onChange={(e) => { props.onChange(e, "title") }}
@@ -93,35 +109,13 @@ const TraningProgramForm = props => {
             {props.item.exercises.map((exercise, idx) => {
                 const item = GetExerciseById(exercise.id);
                 return <Grid item xs={12} key={idx}>
-                    <Paper sx={{ p: 1, mb: 2, mt: 1, backgroundColor: theme.palette.primary.light }}>
-                        <Box sx={{ display: 'flex' }}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                <Typography>{item.title}</Typography>
-                                <Typography variant='caption'>{item.muscle}</Typography>
-                            </Box>
-
-                        </Box>
-
-                        <Divider />
-
-                        <Box>
-                            {exercise.sets.map((set, index) =>
-                                <Grid container key={index} sx={{ mt: 1 }}>
-                                    <Grid item xs={2} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                        {index + 1}
-                                    </Grid>
-                                    <Grid item xs={10}>
-                                        <TextField
-                                            size="small"
-                                            type={"number"}
-                                            onChange={(e) => handleChangeRepeats(e, exercise, index)}
-                                            fullWidth
-                                            value={set.repeats} />
-                                    </Grid>
-                                </Grid>
-                            )}
-                        </Box>
-                    </Paper>
+                    <SetsTable
+                        item={item}
+                        sets={exercise.sets}
+                        handleChangeInput={handleChangeRepeats}
+                        disableWiegth disableCompleted
+                        addSet={addSet}
+                    />
                 </Grid>
             })}
         </Grid>
