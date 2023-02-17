@@ -249,54 +249,48 @@ export const DefaultTraningProgram = () => {
 export const DefaultTraningPrograms = [
     {
         "id": "1",
-        "title": "Спина-трицепс",
+        "title": "Грудь-бицепс",
         "description": "",
-        "exercises": ["1", "2"]
+        "exercises": [
+            {
+                "id": "1",
+                "sets": [
+                    {
+                        repeats: 10,
+                        complited: false
+                    },
+                    {
+                        repeats: 10,
+                        complited: false
+                    },
+                    {
+                        repeats: 10,
+                        complited: false
+                    },
+                    {
+                        repeats: 10,
+                        complited: false
+                    }
+                ]
+            }
+        ]
     },
-    {
-        "id": "2",
-        "title": "Грудь-бицепс" ,
-        "description": "",
-        "exercises": []
-    },
-    {
-        "id": "3",
-        "title": "Ноги-плечи",
-        "description": "",
-        "exercises": []
-    },
-    {
-        "id": "4",
-        "title": "Тяни (спина-бицепс)",
-        "description": "",
-        "exercises": []
-    },
-    {
-        "id": "5",
-        "title": "Тяни (ноги-плечи)",
-        "description": "",
-        "exercises": []
-    },
-    {
-        "id": "6",
-        "title": "Толкай (грудь-трицепс)",
-        "description": "",
-        "exercises": []
-    },
-    {
-        "id": "7",
-        "title": "Толкай (ноги-плечи)",
-        "description": "",
-        "exercises": []
-    }
+    
 ]
 
 export const DefaultTraning = () =>  {
     return {
         "id": uuidv4(),
+        "notes": "",
         "traningProgramId": "",
         "duration": "",
         "startAt": "",
-        "endAt": ""
+        "endAt": "",
+        "exercises": []
     }
+}
+
+export const DefaultSet = {
+    repeats: 10,
+    wiegth: 0
 }

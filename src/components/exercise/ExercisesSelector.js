@@ -50,7 +50,7 @@ const ExercisesSelector = (props) => {
             </Accordion>)}
         </Box>
 
-        <AddButton text={`Применить`} onClick={props.onSave} />
+        <AddButton text={`Применить`} onClick={props.onSave} isBottom={true} />
     </div>
 }
 

@@ -22,7 +22,7 @@ const Modal = (props) => {
                 borderBottomLeftRadius: 0
             }
         }}>
-        <DialogTitle>
+        <DialogTitle sx={{pb:4}}>
             {props.title}
             <IconButton
                 aria-label="close"

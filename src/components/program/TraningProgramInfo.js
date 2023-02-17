@@ -17,12 +17,12 @@ const TraningProgramInfo = props => {
                 onClick={props.onRemove}
                 fullWidth
                 color="error"
-                sx={{ justifyContent: "flex-start", mt: 1, pl: 0 }}
+                sx={{  mt: 1, pl: 0 }}
                 disableRipple>
                 Удалить программу
             </Button>
 
-            <AddButton text="Сохранить" onClick={props.onSave} />
+            <AddButton text="Сохранить" onClick={props.onSave} isBottom={true}/>
         </Box>
     </div>
 }

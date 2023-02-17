@@ -6,6 +6,7 @@ import { Box } from '@mui/system';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TextWithIcon from '../base/TextWithIcon';
+import { FormatDate } from '../../utils/DateUtils';
 
 
 
@@ -26,7 +27,7 @@ const TraningCard = (props) => {
                 <Box sx={{ display: "flex", alignItems: 'center', pl: 1 }}>
                     <TextWithIcon
                         icon={<CalendarMonthIcon />}
-                        text={props.date} />
+                        text={FormatDate(new Date(props.date))} />
                     <TextWithIcon
                         icon={<AccessTimeIcon />}
                         text={`${props.duration} минут`} />

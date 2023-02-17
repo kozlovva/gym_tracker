@@ -4,10 +4,11 @@ import { GetTraningPrograms } from "../../api/TraningProgramAPI";
 import AddButton from "../base/AddButton";
 import Modal from "../base/Modal";
 import TraningProgramCard from "../program/TraningProgramCard";
-import { CreateTraning, GetTodayTranings, GetTraningHistory } from "../service/TraningService";
+import { CreateWorkout, GetTodayWorkouts, GetWorkoutHistory } from "../service/WorkoutService";
 import { GetTraningProgramById } from "../service/TraningProgramService";
 import TraningCard from "../traning/TraningCard";
 import { useNavigate } from "react-router-dom";
+import { FormatDate, FormatDateTime } from "../../utils/DateUtils";
 
 const EmptyResult = () => <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
     <Typography variant="caption">Пока тренировок нет</Typography>
@@ -20,14 +21,14 @@ export const TraningScene = props => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const todayTranings = GetTodayTranings();
+        const todayTranings = GetTodayWorkouts();
         setTodayTranings(todayTranings);
-        const traningHistory = GetTraningHistory();
+        const traningHistory = GetWorkoutHistory();
         setTraningHistory(traningHistory)
     }, [])
 
     const onStart = async (e, modaType, traningProgram) => {
-        const workout = await CreateTraning(traningProgram.id);
+        const workout = await CreateWorkout(traningProgram);
         navigateToWorkout(workout.id)
     }
 
@@ -64,7 +65,7 @@ export const TraningScene = props => {
                         <TraningCard
                             onClick={() => {navigateToWorkout(traning.id)}}
                             title={GetTraningProgramById(traning.traningProgramId).title}
-                            date={traning.date}
+                            date={traning.startAt}
                             duration={traning.duration} />
                     </Grid>
                 )}
@@ -85,7 +86,7 @@ export const TraningScene = props => {
                     <Grid item key={idx} xs={12}>
                         <TraningCard
                             title={GetTraningProgramById(traning.traningProgramId).title}
-                            date={traning.date}
+                            date={traning.startAt}
                             duration={traning.duration} />
                     </Grid>
                 )}

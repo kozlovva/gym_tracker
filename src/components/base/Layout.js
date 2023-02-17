@@ -39,13 +39,13 @@ const darkTheme = createTheme({
     }
 });
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
     const [scene, setScene] = useState("traning")
     const location = useLocation();
     const navigate = useNavigate();
     useEffect(() => {
         const path = location.pathname.substring(1);
-        if (path.length == 0) {
+        if (path.length == 0 || path.includes('workout-process')) {
             setScene("traning")
         } else {
             setScene(path)
@@ -59,10 +59,11 @@ const Layout = ({children}) => {
 
     return <Box sx={{ display: 'flex', height: '100%', justifyContent: 'center', pb: 7, pt: 0 }}>
         <CssBaseline />
-        <ThemeProvider theme={darkTheme}><Box component={"main"} sx={{ p: 1, width: '100%', height: '100%', overflowY: "scroll", pb: 10 }}>
-            <Outlet />
-            <Navigation activeScene={scene} handleChange={handleChange} />
-        </Box>
+        <ThemeProvider theme={darkTheme}>
+            <Box component={"main"} sx={{ p: 1, width: '100%', height: '100%', overflowY: "scroll", pb: 10 }}>
+                <Outlet />
+                <Navigation activeScene={scene} handleChange={handleChange} />
+            </Box>
         </ThemeProvider>
     </Box>
 }

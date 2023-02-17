@@ -13,7 +13,7 @@ const CreateTraningProgram = props => {
                 setExercises={props.setExercises}
                 onSave={props.setExercises}/>
 
-            <AddButton text="Сохранить" onClick={props.onSave} />
+            <AddButton text="Сохранить" onClick={props.onSave} isBottom={true} />
         </Box>
     </div>
 }

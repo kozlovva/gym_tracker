@@ -42,6 +42,7 @@ export const TraningProgramScene = (props) => {
     }
 
     const saveItem = (e) => {
+        
         UpdateTraningProgram(selectedItem);
         closeModal();
     }
@@ -52,6 +53,7 @@ export const TraningProgramScene = (props) => {
     }
 
     const setExercises = (exercises) => {
+        console.log("Exercises", exercises);
         setSelectedItem({...selectedItem, exercises: exercises})
     }
 
@@ -78,8 +80,6 @@ export const TraningProgramScene = (props) => {
 
 
         <AddButton text="Создать программу" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultTraningProgram())}/>
-
-
     </Box>
 }
  

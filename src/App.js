@@ -6,13 +6,13 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import { DefaultExercises, DefaultTraningPrograms } from "./components/Constants";
-import { createBrowserRouter, createHashRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 
 import TraningScene from "./components/scenes/TraningScene";
 import ExercisesScene from "./components/scenes/ExercisesScene";
 import TraningProgramScene from "./components/scenes/TraningProgramScene";
 import Layout from "./components/base/Layout";
-import TraningProcessScene from "./components/scenes/TraningProcessScene";
+import WorkoutProcessScene from "./components/scenes/TraningProcessScene";
 
 const initExercises = () => {
   if (localStorage.getItem("exercises") == null)
@@ -28,7 +28,7 @@ const router = createHashRouter(
       <Route path="exercises" element={<ExercisesScene />} />
       <Route path="traning-programs" element={<TraningProgramScene />} />
       <Route path="traning" element={<TraningScene />} />
-      <Route path="workout-process/:workoutId" element={<TraningProcessScene />} />
+      <Route path="workout-process/:workoutId" element={<WorkoutProcessScene />} />
     </Route>
   )
 );

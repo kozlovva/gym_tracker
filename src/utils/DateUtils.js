@@ -19,6 +19,7 @@ export const FormatDateTime = (date) => {
 }
 
 export const FormatDate = (date) => {
+    console.log(date)
     return (
         [
             date.getFullYear(),

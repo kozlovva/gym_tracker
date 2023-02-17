@@ -12,7 +12,7 @@ const CreateExercise = (props) => {
                 exercise={props.exercise}
                 onChange={props.onChange} />
 
-            <AddButton text="Создать" onClick={props.onSave} />
+            <AddButton text="Создать" onClick={props.onSave} isBottom={true} />
         </Box>
     </div>
 };
