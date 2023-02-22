@@ -3,7 +3,7 @@ import { Box, useTheme } from '@mui/system';
 import React from 'react';
 import AddSetButton from '../base/AddSetButton';
 
-const SetsTable = ({item, sets, handleChangeInput, handleChangeCompleted, addSet, disableWiegth, disableCompleted}) => {
+const SetsTable = ({ item, sets, handleChangeInput, handleChangeCompleted, addSet, disableWiegth, disableCompleted, infoMode, inputMode }) => {
     const theme = useTheme();
 
     return <Paper sx={{ p: 1, mb: 2, mt: 1, backgroundColor: theme.palette.primary.light }}>
@@ -24,7 +24,7 @@ const SetsTable = ({item, sets, handleChangeInput, handleChangeCompleted, addSet
                             <TableCell>Подход</TableCell>
                             <TableCell align='center'>Повторы</TableCell>
                             {!disableWiegth && <TableCell align='center'>Вес</TableCell>}
-                            {!disableCompleted &&<TableCell>Выполнен</TableCell>}
+                            {!disableCompleted && <TableCell>Выполнен</TableCell>}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -32,25 +32,34 @@ const SetsTable = ({item, sets, handleChangeInput, handleChangeCompleted, addSet
                             <TableRow key={index}>
                                 <TableCell>{index + 1}</TableCell>
                                 <TableCell align='center'>
-                                    <TextField
+                                    {inputMode && <TextField
+                                        inputProps={{
+                                            sx: { textAlign: "center" }
+                                        }}
                                         size='small'
                                         name="repeats"
                                         type={"number"}
                                         onChange={(e) => { handleChangeInput(e, item, index) }}
                                         fullWidth
-                                        value={set.repeats} />
+                                        value={set.repeats} />}
+                                    {infoMode && set.repeats}
                                 </TableCell>
                                 {!disableWiegth && <TableCell align='center'>
-                                    <TextField
+                                    {inputMode && <TextField
+                                        inputProps={{
+                                            sx: { textAlign: "center" }
+                                        }}
                                         size='small'
                                         name="wieght"
                                         type={"number"}
                                         onChange={(e) => { handleChangeInput(e, item, index) }}
                                         fullWidth
-                                        value={set.wieght} />
+                                        value={set.wieght} />}
+                                    {infoMode && set.wieght}
                                 </TableCell>}
                                 {!disableCompleted && <TableCell align='right'>
                                     <Checkbox
+                                        disabled={infoMode}
                                         name="completed"
                                         color='secondary'
                                         checked={set.completed}
@@ -61,9 +70,9 @@ const SetsTable = ({item, sets, handleChangeInput, handleChangeCompleted, addSet
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', pt: 1 }}>
+            {inputMode && <Box sx={{ display: 'flex', justifyContent: 'flex-end', pt: 1 }}>
                 <AddSetButton text="Добавить подход" onClick={e => addSet(item)} />
-            </Box>
+            </Box>}
         </Box>
     </Paper>
 }

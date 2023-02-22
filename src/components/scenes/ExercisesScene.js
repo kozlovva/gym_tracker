@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React, { useState } from "react";
 import { AddExercises, RemoveExercises, UpdateExercise } from "../../api/ExercisesAPI";
-import AddButton from "../base/AddButton";
+import MainButton from "../base/MainButton";
 import Modal from "../base/Modal";
 import { DefaultExercise, ModalTypeAdd, ModalTypeInfo } from "../Constants";
 import CreateExercise from "../exercise/CreateExercise";
@@ -76,7 +76,7 @@ const ExercisesScene = props => {
                 onSave={addExeecise} />}
         </Modal>
 
-        <AddButton text="Создать упражнение" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultExercise())} />
+        <MainButton text="Создать упражнение" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultExercise())} />
     </Box>
 }
 

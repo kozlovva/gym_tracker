@@ -1,7 +1,7 @@
 import { Accordion, AccordionDetails, AccordionSummary as MuiAccordionSummary, Box, Button, styled } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { GetExercisesByMuscle } from '../../api/ExercisesAPI';
-import AddButton from '../base/AddButton';
+import MainButton from '../base/MainButton';
 import { MuscleGroupsEnum, MuscleGroupsInfo } from '../Constants';
 import CheckIcon from '@mui/icons-material/Check';
 
@@ -50,7 +50,7 @@ const ExercisesSelector = (props) => {
             </Accordion>)}
         </Box>
 
-        <AddButton text={`Применить`} onClick={props.onSave} isBottom={true} />
+        <MainButton text={`Применить`} onClick={props.onSave} isBottom={true} />
     </div>
 }
 

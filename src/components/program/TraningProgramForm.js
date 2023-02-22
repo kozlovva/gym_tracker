@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Grid, Paper, TextField, Typography, useTheme } from '@mui/material';
+import { Box, Button, Grid, TextField, Typography, useTheme } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { GetExerciseById } from '../../api/ExercisesAPI';
 import Modal from '../base/Modal';

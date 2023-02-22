@@ -1,5 +1,5 @@
 import { GetWorkouts, SetWorkouts , GetWorkoutById as ById } from "../../api/WorkoutAPI";
-import { FormatDate } from "../../utils/DateUtils";
+import { FormatDate, MinutesBetweenDates } from "../../utils/DateUtils";
 import { DefaultTraning } from "../Constants"
 
 export const CreateWorkout = (selectedProgram) => {
@@ -41,4 +41,34 @@ export const GetWorkoutHistory = () => {
 
 export const GetWorkoutById = id => {
     return ById(id);
+}
+
+export const SaveWorkout = workout => {
+    const items = GetWorkouts();
+    SetWorkouts (items.map(item => {
+       return item.id == workout.id ? workout : item
+    }));
+}
+
+export const StartWorkout = workout => {
+    workout.startAt = new Date();   
+    workout.status = "ACTIVE";    
+    SaveWorkout(workout)
+    return workout;
+}
+
+export const CompleteWorkout = workout => {
+    workout.endAt = new Date();   
+    workout.status = "COMPLETED";
+    workout.duration = MinutesBetweenDates(new Date(workout.startAt), workout.endAt);
+    SaveWorkout(workout)
+    return workout;
+}
+
+export const RejectWorkout = (workout, cause) => {
+    workout.endAt = new Date();   
+    workout.status = "REJECTED"; 
+    workout.rejectCause = cause
+    SaveWorkout(workout)
+    return workout;
 }

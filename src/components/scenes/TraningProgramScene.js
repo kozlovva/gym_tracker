@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import React, { useState } from 'react';
 import { AddTraningProgram, RemoveTraningProgram, UpdateTraningProgram } from '../../api/TraningProgramAPI';
-import AddButton from '../base/AddButton';
+import MainButton from '../base/MainButton';
 import Modal from '../base/Modal';
 import { DefaultModalState, DefaultTraningProgram, ModalTypeAdd, ModalTypeInfo } from '../Constants';
 import CreateTraningProgram from '../program/CreateTraningProgram';
@@ -79,7 +79,7 @@ export const TraningProgramScene = (props) => {
         </Modal>
 
 
-        <AddButton text="Создать программу" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultTraningProgram())}/>
+        <MainButton text="Создать программу" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultTraningProgram())}/>
     </Box>
 }
  

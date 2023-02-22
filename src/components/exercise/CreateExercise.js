@@ -1,8 +1,6 @@
-import { Button, Card, CardActions, CardContent, createTheme, FormControl, InputLabel, MenuItem, OutlinedInput, Select, TextField, ThemeProvider, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import AddButton from '../base/AddButton';
-import { MuscleGroupsEnum } from '../Constants';
+import MainButton from '../base/MainButton';
 import ExerciseFrom from './ExerciseForm';
 
 const CreateExercise = (props) => {
@@ -12,7 +10,7 @@ const CreateExercise = (props) => {
                 exercise={props.exercise}
                 onChange={props.onChange} />
 
-            <AddButton text="Создать" onClick={props.onSave} isBottom={true} />
+            <MainButton text="Создать" onClick={props.onSave} isBottom={true} />
         </Box>
     </div>
 };

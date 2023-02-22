@@ -2,7 +2,6 @@ import React from 'react';
 import { Card as MuiCard, CardActionArea, CardContent, CardHeader, styled, Typography } from "@mui/material"
 import { ModalTypeInfo } from '../Constants';
 
-
 const Card = styled((props) => (
     <MuiCard sx={{ display: "flex", minHeight: "180px", ...props.sx }} {...props} />
 ))(({ theme }) => ({

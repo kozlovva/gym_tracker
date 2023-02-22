@@ -286,11 +286,17 @@ export const DefaultTraning = () =>  {
         "duration": "",
         "startAt": "",
         "endAt": "",
-        "exercises": []
+        "exercises": [],
+        "status": "NEW",
+        "rejectCause": ""
     }
 }
+
+export const Statuses = [
+    "NEW", "ACTIVE", "COMPLETED", "REJECTED"
+]
 
 export const DefaultSet = {
     repeats: 10,
     wiegth: 0
-}
+} 

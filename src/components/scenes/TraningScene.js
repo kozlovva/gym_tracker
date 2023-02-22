@@ -1,14 +1,13 @@
 import { Box, Card, CardActionArea, CardHeader, Divider, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { GetTraningPrograms } from "../../api/TraningProgramAPI";
-import AddButton from "../base/AddButton";
+import MainButton from "../base/MainButton";
 import Modal from "../base/Modal";
 import TraningProgramCard from "../program/TraningProgramCard";
 import { CreateWorkout, GetTodayWorkouts, GetWorkoutHistory } from "../service/WorkoutService";
 import { GetTraningProgramById } from "../service/TraningProgramService";
 import TraningCard from "../traning/TraningCard";
 import { useNavigate } from "react-router-dom";
-import { FormatDate, FormatDateTime } from "../../utils/DateUtils";
 
 const EmptyResult = () => <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
     <Typography variant="caption">Пока тренировок нет</Typography>
@@ -63,6 +62,7 @@ export const TraningScene = props => {
                 {todayTranings.map((traning, idx) =>
                     <Grid item key={idx} xs={12}>
                         <TraningCard
+                            status={traning.status}
                             onClick={() => {navigateToWorkout(traning.id)}}
                             title={GetTraningProgramById(traning.traningProgramId).title}
                             date={traning.startAt}
@@ -113,7 +113,7 @@ export const TraningScene = props => {
 
         </Modal>
 
-        <AddButton text="Начать тренировку!" onClick={onChangeModal} />
+        <MainButton text="Начать тренировку!" onClick={onChangeModal} />
     </Box>
 }
 

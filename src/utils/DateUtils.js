@@ -19,7 +19,6 @@ export const FormatDateTime = (date) => {
 }
 
 export const FormatDate = (date) => {
-    console.log(date)
     return (
         [
             date.getFullYear(),
@@ -27,4 +26,9 @@ export const FormatDate = (date) => {
             PadTo2Digits(date.getUTCDate()),
         ].join('-')
     );
+}
+
+export const MinutesBetweenDates = (from, to) => {
+    console.log(`From ${from} - to ${to}`)
+    return Math.floor((to.getTime() - from.getTime())/1000/60);
 }
