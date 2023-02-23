@@ -2,15 +2,17 @@ import { Checkbox, Divider, Paper, Table, TableBody, TableCell, TableContainer, 
 import { Box, useTheme } from '@mui/system';
 import React from 'react';
 import AddSetButton from '../base/AddSetButton';
+import { MuscleGroupsInfo } from '../Constants';
 
-const SetsTable = ({ item, sets, handleChangeInput, handleChangeCompleted, addSet, disableWiegth, disableCompleted, infoMode, inputMode }) => {
+const SetsTable = ({ item, sets, handleChangeInput, handleChangeCompleted, addSet, disableWeigth, disableCompleted, infoMode, inputMode }) => {
     const theme = useTheme();
+    console.log(sets);
 
     return <Paper sx={{ p: 1, mb: 2, mt: 1, backgroundColor: theme.palette.primary.light }}>
         <Box sx={{ display: 'flex' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', pl: 2, pr: 2 }}>
                 <Typography>{item.title}</Typography>
-                <Typography variant='caption'>{item.muscle}</Typography>
+                <Typography variant='caption'>{MuscleGroupsInfo[item.muscle].locale}</Typography>
             </Box>
         </Box>
 
@@ -23,7 +25,7 @@ const SetsTable = ({ item, sets, handleChangeInput, handleChangeCompleted, addSe
                         <TableRow>
                             <TableCell>Подход</TableCell>
                             <TableCell align='center'>Повторы</TableCell>
-                            {!disableWiegth && <TableCell align='center'>Вес</TableCell>}
+                            {!disableWeigth && <TableCell align='center'>Вес</TableCell>}
                             {!disableCompleted && <TableCell>Выполнен</TableCell>}
                         </TableRow>
                     </TableHead>
@@ -44,18 +46,18 @@ const SetsTable = ({ item, sets, handleChangeInput, handleChangeCompleted, addSe
                                         value={set.repeats} />}
                                     {infoMode && set.repeats}
                                 </TableCell>
-                                {!disableWiegth && <TableCell align='center'>
+                                {!disableWeigth && <TableCell align='center'>
                                     {inputMode && <TextField
                                         inputProps={{
                                             sx: { textAlign: "center" }
                                         }}
                                         size='small'
-                                        name="wieght"
+                                        name="weight"
                                         type={"number"}
                                         onChange={(e) => { handleChangeInput(e, item, index) }}
                                         fullWidth
-                                        value={set.wieght} />}
-                                    {infoMode && set.wieght}
+                                        value={set.weight} />}
+                                    {infoMode && set.weight}
                                 </TableCell>}
                                 {!disableCompleted && <TableCell align='right'>
                                     <Checkbox

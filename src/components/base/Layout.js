@@ -53,7 +53,6 @@ const Layout = ({ children }) => {
     }, [location])
 
     const handleChange = (event, newValue) => {
-        console.log(scene)
         navigate(`/${newValue}`)
     };
 

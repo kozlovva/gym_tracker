@@ -50,7 +50,7 @@ const CustomCard = props => {
                         text={FormatDate(new Date(props.date))} />
                     <TextWithIcon
                         icon={<AccessTimeIcon />}
-                        text={`${props.duration}`} />
+                        text={`${props.duration} мин.`} />
                 </Box>
             </CardActions>
         </CardActionArea>

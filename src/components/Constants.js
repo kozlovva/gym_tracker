@@ -257,18 +257,22 @@ export const DefaultTraningPrograms = [
                 "sets": [
                     {
                         repeats: 10,
+                        weight: 0,
                         complited: false
                     },
                     {
                         repeats: 10,
+                        weight: 0,
                         complited: false
                     },
                     {
                         repeats: 10,
+                        weight: 0,
                         complited: false
                     },
                     {
                         repeats: 10,
+                        weight: 0,
                         complited: false
                     }
                 ]
@@ -287,8 +291,10 @@ export const DefaultTraning = () =>  {
         "startAt": "",
         "endAt": "",
         "exercises": [],
-        "status": "NEW",
-        "rejectCause": ""
+        "status": "ACTIVE",
+        "rejectCause": "",
+        "volume": 0,
+        "progress": 0
     }
 }
 
@@ -298,5 +304,18 @@ export const Statuses = [
 
 export const DefaultSet = {
     repeats: 10,
-    wiegth: 0
+    weight: 0,
+    completed: false
 } 
+
+export const GenerateProgramExercise = id => {
+    let setCount = 4;
+    let sets = [];
+    for (let i = 0; i<setCount; i++) {
+        sets.push(DefaultSet)
+    }
+    return {
+        id: id,
+        sets: sets
+    }
+}

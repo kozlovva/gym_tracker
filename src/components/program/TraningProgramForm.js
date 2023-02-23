@@ -2,6 +2,7 @@ import { Box, Button, Grid, TextField, Typography, useTheme } from '@mui/materia
 import React, { useEffect, useState } from 'react';
 import { GetExerciseById } from '../../api/ExercisesAPI';
 import Modal from '../base/Modal';
+import { DefaultSet } from '../Constants';
 import ExercisesSelector from '../exercise/ExercisesSelector';
 import SetsTable from './SetsTable';
 
@@ -77,11 +78,7 @@ const TraningProgramForm = props => {
 
     const addSet = (exercise) => {
         let target = selected.find(e => e.id == exercise.id);
-        target.sets.push({
-            repeats: 10,
-            wieght: 0,
-            completed: false
-        });
+        target.sets.push(DefaultSet);
         setSelected(selected.map(e => {
             if (e.id == target.id)
                 return target;
@@ -113,7 +110,7 @@ const TraningProgramForm = props => {
                         item={item}
                         sets={exercise.sets}
                         handleChangeInput={handleChangeRepeats}
-                        disableWiegth disableCompleted
+                        disableWeigth disableCompleted infoMode
                         addSet={addSet}
                     />
                 </Grid>
@@ -134,7 +131,7 @@ const TraningProgramForm = props => {
         </Modal>
 
         <Button fullWidth variant="contained" color="secondary" onClick={handleChangeOpen}>
-            Добавить упражнение
+           Изменить упражнения
         </Button>
     </Box >
 }
