@@ -78,7 +78,7 @@ const TraningProgramForm = props => {
 
     const addSet = (exercise) => {
         let target = selected.find(e => e.id == exercise.id);
-        target.sets.push(DefaultSet);
+        target.sets.push(DefaultSet());
         setSelected(selected.map(e => {
             if (e.id == target.id)
                 return target;

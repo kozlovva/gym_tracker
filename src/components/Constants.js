@@ -302,17 +302,19 @@ export const Statuses = [
     "NEW", "ACTIVE", "COMPLETED", "REJECTED"
 ]
 
-export const DefaultSet = {
-    repeats: 10,
-    weight: 0,
-    completed: false
-} 
+export const DefaultSet =() => {
+    return {
+        repeats: 10,
+        weight: 0,
+        completed: false
+    } 
+}
 
 export const GenerateProgramExercise = id => {
     let setCount = 4;
     let sets = [];
     for (let i = 0; i<setCount; i++) {
-        sets.push(DefaultSet)
+        sets.push(DefaultSet())
     }
     return {
         id: id,

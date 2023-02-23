@@ -64,7 +64,7 @@ const WorkoutProcessScene = (props) => {
 
     const addSet = (exercise) => {
         let target = getTargetExerciseById(exercise.id);
-        target.sets.push(DefaultSet);
+        target.sets.push(DefaultSet());
         updateWorkoutFilling(target)
     }
 
