@@ -4,10 +4,13 @@ import React from 'react';
 import { Area, AreaChart, ResponsiveContainer, Tooltip } from 'recharts';
 
 const CustomTooltip = ({ payload }) => {
-    
+
+    if (payload == null || payload == 'undefined')
+        return <div></div>
+
     return <Box sx={{ p: 1, display: 'flex', flexDirection: 'column' }}>
-        {payload && <Typography variant='caption'>{payload[0].payload.date}</Typography>}
-        {payload && <Typography variant='caption'>{payload[0].value}</Typography>}
+        {payload.length && <Typography variant='caption'>{payload[0].payload.date}</Typography>}
+        {payload.length && <Typography variant='caption'>{payload[0].value}</Typography>}
     </Box>
 }
 
@@ -20,7 +23,7 @@ const Chart = ({ data, dataKey }) => {
             <Tooltip
                 position={{ y: 0 }}
                 content={<CustomTooltip />}
-                wrapperStyle={{backgroundColor: theme.palette.secondary.light, outlineColor: theme.palette.secondary.dark }} />
+                wrapperStyle={{ backgroundColor: theme.palette.secondary.light, outlineColor: theme.palette.secondary.dark }} />
             <Area
                 type="monotone"
                 dataKey={dataKey}
