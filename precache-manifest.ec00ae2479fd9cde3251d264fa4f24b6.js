@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "7df206e0ab15b0146d55",
+    "revision": "8fac10cd611ba8a50717",
     "url": "/gym_tracker/static/css/main.afb75161.chunk.css"
   },
   {
-    "revision": "7df206e0ab15b0146d55",
-    "url": "/gym_tracker/static/js/main.7df206e0.chunk.js"
+    "revision": "8fac10cd611ba8a50717",
+    "url": "/gym_tracker/static/js/main.8fac10cd.chunk.js"
   },
   {
     "revision": "e832b3b9b5ba97274edf",
@@ -28,20 +28,20 @@ self.__precacheManifest = [
     "url": "/gym_tracker/static/media/roboto-cyrillic-ext-300-normal.d0441335.woff2"
   },
   {
-    "revision": "2323284ef85bfeaca074c668b72109c6",
-    "url": "/gym_tracker/static/media/roboto-all-300-normal.2323284e.woff"
-  },
-  {
-    "revision": "dcdaee374d5bbeab0a5ed5c8cf39a6cd",
-    "url": "/gym_tracker/static/media/roboto-greek-300-normal.dcdaee37.woff2"
+    "revision": "9b9ec29522d1bf8924ccc2d917e1807b",
+    "url": "/gym_tracker/static/media/roboto-cyrillic-300-normal.9b9ec295.woff2"
   },
   {
     "revision": "c2be5367fbf0e1066261fd78eb103f4a",
     "url": "/gym_tracker/static/media/roboto-greek-ext-300-normal.c2be5367.woff2"
   },
   {
-    "revision": "9b9ec29522d1bf8924ccc2d917e1807b",
-    "url": "/gym_tracker/static/media/roboto-cyrillic-300-normal.9b9ec295.woff2"
+    "revision": "dcdaee374d5bbeab0a5ed5c8cf39a6cd",
+    "url": "/gym_tracker/static/media/roboto-greek-300-normal.dcdaee37.woff2"
+  },
+  {
+    "revision": "2323284ef85bfeaca074c668b72109c6",
+    "url": "/gym_tracker/static/media/roboto-all-300-normal.2323284e.woff"
   },
   {
     "revision": "48c684d99330969e3ce90b9e9da2d698",
@@ -88,28 +88,28 @@ self.__precacheManifest = [
     "url": "/gym_tracker/static/media/roboto-latin-400-normal.15d9f621.woff2"
   },
   {
-    "revision": "2742d81afb69e902e4513dc7cdda0a7f",
-    "url": "/gym_tracker/static/media/roboto-cyrillic-ext-500-normal.2742d81a.woff2"
+    "revision": "68d75d959b2a0e9958b11d781338c8f7",
+    "url": "/gym_tracker/static/media/roboto-all-500-normal.68d75d95.woff"
   },
   {
     "revision": "7b08b9e11fc6b8a8a1398b357e874144",
     "url": "/gym_tracker/static/media/roboto-cyrillic-500-normal.7b08b9e1.woff2"
   },
   {
-    "revision": "e7b7001dff6c14165abdc0fefdecae06",
-    "url": "/gym_tracker/static/media/roboto-greek-ext-500-normal.e7b7001d.woff2"
+    "revision": "2742d81afb69e902e4513dc7cdda0a7f",
+    "url": "/gym_tracker/static/media/roboto-cyrillic-ext-500-normal.2742d81a.woff2"
   },
   {
-    "revision": "7cda2cfee99d697daf8c14819d9004eb",
-    "url": "/gym_tracker/static/media/roboto-vietnamese-500-normal.7cda2cfe.woff2"
+    "revision": "e7b7001dff6c14165abdc0fefdecae06",
+    "url": "/gym_tracker/static/media/roboto-greek-ext-500-normal.e7b7001d.woff2"
   },
   {
     "revision": "53f395eb854a40e978706b1082570e42",
     "url": "/gym_tracker/static/media/roboto-greek-500-normal.53f395eb.woff2"
   },
   {
-    "revision": "68d75d959b2a0e9958b11d781338c8f7",
-    "url": "/gym_tracker/static/media/roboto-all-500-normal.68d75d95.woff"
+    "revision": "7cda2cfee99d697daf8c14819d9004eb",
+    "url": "/gym_tracker/static/media/roboto-vietnamese-500-normal.7cda2cfe.woff2"
   },
   {
     "revision": "e36fccd06262bef92e7a9841e2202225",
@@ -132,6 +132,10 @@ self.__precacheManifest = [
     "url": "/gym_tracker/static/media/roboto-greek-ext-700-normal.2953af00.woff2"
   },
   {
+    "revision": "aa462125b8faf7600001e1fe9b47e216",
+    "url": "/gym_tracker/static/media/roboto-all-700-normal.aa462125.woff"
+  },
+  {
     "revision": "3f8b2aa43c439ca2c8930c198320c231",
     "url": "/gym_tracker/static/media/roboto-greek-700-normal.3f8b2aa4.woff2"
   },
@@ -148,11 +152,7 @@ self.__precacheManifest = [
     "url": "/gym_tracker/static/media/roboto-latin-700-normal.e9f5aaf5.woff2"
   },
   {
-    "revision": "aa462125b8faf7600001e1fe9b47e216",
-    "url": "/gym_tracker/static/media/roboto-all-700-normal.aa462125.woff"
-  },
-  {
-    "revision": "d56a840124bdff2349de7636d2e9c513",
+    "revision": "ff76684d26e149f7d09700c145ae2ccf",
     "url": "/gym_tracker/index.html"
   }
 ];
