@@ -42,7 +42,6 @@ export const TraningProgramScene = (props) => {
     }
 
     const saveItem = (e) => {
-        
         UpdateTraningProgram(selectedItem);
         closeModal();
     }
