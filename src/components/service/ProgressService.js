@@ -4,7 +4,7 @@ import { GetWorkoutsByDateRange } from "./WorkoutService";
 export const GetStatisticByPeriod = period => {
     let dateRange = GetDateRangeByPeriod(period);
     const workouts = GetWorkoutsByDateRange(dateRange) || [];
-    const max = Math.max(...workouts.map(workout => workout.volume))
+    const max = workouts.length && Math.max(...workouts.map(workout => workout.volume))
 
     return {
         workoutCount: workouts.length,
