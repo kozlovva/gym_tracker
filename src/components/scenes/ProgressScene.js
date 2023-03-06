@@ -34,7 +34,7 @@ const ProgressScene = () => {
         height: "100%", overflow: "scroll",
     }}>
         <Typography variant='h6'>Тренировочный прогресс</Typography>
-        TEST2
+        TEST3
         <Box sx={{ display: 'flex', justifyContent: "center", pt: 2, pb: 2 }}>
             <ToggleButtonGroup
                 value={period}
