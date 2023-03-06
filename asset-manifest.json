@@ -1,7 +1,7 @@
 {
   "main.css": "/gym_tracker/static/css/main.afb75161.chunk.css",
-  "main.js": "/gym_tracker/static/js/main.f13976f7.chunk.js",
-  "main.js.map": "/gym_tracker/static/js/main.f13976f7.chunk.js.map",
+  "main.js": "/gym_tracker/static/js/main.7df206e0.chunk.js",
+  "main.js.map": "/gym_tracker/static/js/main.7df206e0.chunk.js.map",
   "static/js/1.e832b3b9.chunk.js": "/gym_tracker/static/js/1.e832b3b9.chunk.js",
   "static/js/1.e832b3b9.chunk.js.map": "/gym_tracker/static/js/1.e832b3b9.chunk.js.map",
   "static/css/2.26825257.chunk.css": "/gym_tracker/static/css/2.26825257.chunk.css",
@@ -9,13 +9,13 @@
   "static/js/2.0aa6b475.chunk.js.map": "/gym_tracker/static/js/2.0aa6b475.chunk.js.map",
   "runtime~main.js": "/gym_tracker/static/js/runtime~main.b107566b.js",
   "runtime~main.js.map": "/gym_tracker/static/js/runtime~main.b107566b.js.map",
-  "static/media/300.css": "/gym_tracker/static/media/roboto-all-300-normal.2323284e.woff",
+  "static/media/300.css": "/gym_tracker/static/media/roboto-latin-300-normal.b9c29351.woff2",
   "static/media/400.css": "/gym_tracker/static/media/roboto-latin-400-normal.15d9f621.woff2",
   "static/media/500.css": "/gym_tracker/static/media/roboto-latin-500-normal.3a44e06e.woff2",
   "static/media/700.css": "/gym_tracker/static/media/roboto-all-700-normal.aa462125.woff",
   "static/css/main.afb75161.chunk.css.map": "/gym_tracker/static/css/main.afb75161.chunk.css.map",
   "static/css/2.26825257.chunk.css.map": "/gym_tracker/static/css/2.26825257.chunk.css.map",
   "index.html": "/gym_tracker/index.html",
-  "precache-manifest.ea22b1af977274a9244777b8d8d36491.js": "/gym_tracker/precache-manifest.ea22b1af977274a9244777b8d8d36491.js",
+  "precache-manifest.f7332f43f66b5d0116bcf7a92786a712.js": "/gym_tracker/precache-manifest.f7332f43f66b5d0116bcf7a92786a712.js",
   "service-worker.js": "/gym_tracker/service-worker.js"
 }
