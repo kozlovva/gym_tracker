@@ -1,4 +1,4 @@
-import { Box, Card, CardActionArea, CardHeader, Divider, Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { GetTraningPrograms } from "../../api/TraningProgramAPI";
 import MainButton from "../base/MainButton";

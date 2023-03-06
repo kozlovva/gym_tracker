@@ -30,5 +30,20 @@ export const FormatDate = (date) => {
 
 export const MinutesBetweenDates = (from, to) => {
     console.log(`From ${from} - to ${to}`)
-    return Math.floor((to.getTime() - from.getTime())/1000/60);
+    return Math.floor((to.getTime() - from.getTime()) / 1000 / 60);
+}
+
+export const GetDateRangeByPeriod = period => {
+    const date = new Date();
+    if (period == "week") {
+        date.setDate(date.getDate() - 7) 
+    }
+    if (period == "year") {
+        date.setDate(date.getDate() - 365)
+    }
+    if (period == "month") {
+        date.setDate(date.getDate() - 30)
+    }
+
+    return {to: new Date(), from: date}
 }

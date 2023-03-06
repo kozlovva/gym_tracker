@@ -97,7 +97,7 @@ export const CalcExerciseVolume = workoutExercise => {
 
 export const CalcProgressInPercent = workout => {
     let countOfSets = GetWorkoutSetsCount(workout);
-    let completedSets = workout.exercises.reduce((result, exercise) => result+ CalcCompletedSets(exercise), 0)
+    let completedSets = workout.exercises.reduce((result, exercise) => result + CalcCompletedSets(exercise), 0)
     console.log(`${countOfSets} - ${completedSets}`)
     return ((completedSets / countOfSets) * 100).toFixed(0)
 }
@@ -108,4 +108,14 @@ export const CalcCompletedSets = workoutExercise => {
 
 export const GetWorkoutSetsCount = workout => {
     return workout.exercises.reduce((result, exercise) => result + exercise.sets.length, 0)
+}
+
+export const GetWorkoutsByDateRange = range => {
+    return GetWorkouts()
+        .filter(workout => { 
+            const endAt = new Date(workout.endAt);
+            if (endAt >= range.from && endAt <= range.to) {
+                return workout;
+            }
+        })
 }
