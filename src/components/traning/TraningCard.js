@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
+import { Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Typography, useTheme } from "@mui/material";
 import Tag from '../base/Tag';
 import { Box } from '@mui/system';
 
@@ -30,6 +30,7 @@ const TraningCard = (props) => {
 }
 
 const CustomCard = props => {
+    const theme = useTheme();
     return <Card
         onClick={props.onClick}
         sx={{

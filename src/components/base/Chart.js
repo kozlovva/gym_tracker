@@ -9,8 +9,8 @@ const CustomTooltip = ({ payload }) => {
         return <div></div>
 
     return <Box sx={{ p: 1, display: 'flex', flexDirection: 'column' }}>
-        {payload.length && <Typography variant='caption'>{payload[0].payload.date}</Typography>}
-        {payload.length && <Typography variant='caption'>{payload[0].value}</Typography>}
+        {payload.length && <Typography variant='caption' color="secondary">{payload[0].payload.date}</Typography>}
+        {payload.length && <Typography variant='caption' color="secondary">{payload[0].value}</Typography>}
     </Box>
 }
 
@@ -23,7 +23,7 @@ const Chart = ({ data, dataKey }) => {
             <Tooltip
                 position={{ y: 0 }}
                 content={<CustomTooltip />}
-                wrapperStyle={{ backgroundColor: theme.palette.secondary.light, outlineColor: theme.palette.secondary.dark }} />
+                wrapperStyle={{ backgroundColor: theme.palette.secondary.light, outlineColor: theme.palette.secondary.dark, borderRadius: 1 }} />
             <Area
                 type="monotone"
                 dataKey={dataKey}

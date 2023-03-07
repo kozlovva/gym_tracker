@@ -57,9 +57,7 @@ const ExercisesScene = props => {
         closeModal();
     }
 
-    return <Box sx={{
-        height: "100%", overflow: "scroll",
-    }}>
+    return <div>
         <ExerciseList onClick={onChangeModal} />
         <Modal
             open={modalInfo.open}
@@ -77,7 +75,7 @@ const ExercisesScene = props => {
         </Modal>
 
         <MainButton text="Создать упражнение" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultExercise())} />
-    </Box>
+    </div>
 }
 
 export default ExercisesScene;

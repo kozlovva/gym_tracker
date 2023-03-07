@@ -51,9 +51,7 @@ export const TraningScene = props => {
         navigate(`/workout-process/${id}`)
     }
 
-    return <Box sx={{
-        height: "100%", overflow: "scroll",
-    }}>
+    return <div>
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
             <Typography>Сегодня</Typography>
         </Box>
@@ -114,7 +112,7 @@ export const TraningScene = props => {
         </Modal>
 
         <MainButton text="Начать тренировку!" onClick={onChangeModal} />
-    </Box>
+    </div>
 }
 
 export default TraningScene;

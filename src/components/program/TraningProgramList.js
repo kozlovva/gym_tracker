@@ -5,8 +5,8 @@ import TraningProgramCard from "../program/TraningProgramCard";
 
 const TraningProgramList = (props) => {
     return <Grid container spacing={2}>
-        {GetTraningPrograms().map((program, idx) => <Grid key={idx} item xs={12}>
-            <TraningProgramCard item={program} onClick={props.onClick}/>
+        {GetTraningPrograms().map((program, idx) => <Grid key={idx} item xs={6}>
+            <TraningProgramCard item={program} onClick={props.onClick} withCount={props.withCount}/>
         </Grid>)}
     </Grid>
 }

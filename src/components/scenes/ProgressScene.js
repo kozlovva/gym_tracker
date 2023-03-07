@@ -2,6 +2,7 @@ import { Fade, Grid, Paper, ToggleButton, ToggleButtonGroup, Typography } from '
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import ChartCard from '../base/ChartCard';
+import CountChart from '../base/CountChart';
 import { GetStatisticByPeriod } from '../service/ProgressService';
 
 const ProgressScene = () => {
@@ -13,6 +14,10 @@ const ProgressScene = () => {
         tonnageData: {
             max: 0,
             data: []
+        },
+        durationData: {
+            max: 0,
+            data: []
         }
     })
 
@@ -21,18 +26,16 @@ const ProgressScene = () => {
     }, [period])
 
     const handleChangePeriod = e => {
-        
+
         updateFade(false);
         setTimeout(() => {
             updatePeriod(e.target.value)
             updateFade(true);
         }, 150)
-        
+
     }
 
-    return <Box sx={{
-        height: "100%", overflow: "scroll",
-    }}>
+    return <div>
         <Typography variant='h6'>Тренировочный прогресс</Typography>
         <Box sx={{ display: 'flex', justifyContent: "center", pt: 2, pb: 2 }}>
             <ToggleButtonGroup
@@ -54,35 +57,33 @@ const ProgressScene = () => {
         </Box>
         <Grid container spacing={2}>
             <Grid item xs={6}>
-                <Paper sx={{ p: 2, height: 220 }}>
-                    <Box sx={{ display: 'flex', justifyContent: "center"}}>
-                        <Typography>Тренировок</Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: "center", alignItems: 'center', height: "100%" }}>
-                        <Fade in={fade} timeout={150}>
-                            <Typography variant='h2'>{statistic.workoutCount}</Typography>
-                        </Fade>
-                    </Box>
-                </Paper>
+                <CountChart
+                    title="Тренировок"
+                    fade={fade}
+                    count={statistic.workoutCount} />
             </Grid>
             <Grid item xs={6}>
-                <Paper sx={{ p: 2, height: 220 }}>
-                    <Box sx={{ display: 'flex', justifyContent: "center"}}>
-                        <Typography>Завершено</Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: "center", alignItems: 'center', height: "100%" }}>
-                        <Fade in={fade}>
-                            <Typography variant='h2'>{statistic.fullCompleteCount}</Typography>
-                        </Fade>
-
-                    </Box>
-                </Paper>
+                <CountChart
+                    title="Завершено"
+                    fade={fade}
+                    count={statistic.fullCompleteCount} />
             </Grid>
             <Grid item xs={12}>
-                <ChartCard title={"Тоннаж"} maxValue={statistic.tonnageData.max} dataKey="volume" data={statistic.tonnageData.data} />
+                <ChartCard
+                    title={"Тоннаж"}
+                    maxValue={statistic.tonnageData.max}
+                    dataKey="volume"
+                    data={statistic.tonnageData.data} />
+            </Grid>
+            <Grid item xs={12}>
+                <ChartCard
+                    title={"Длительность"}
+                    maxValue={statistic.durationData.max}
+                    dataKey="duration"
+                    data={statistic.durationData.data} />
             </Grid>
         </Grid>
-    </Box>
+    </div>
 }
 
 export default ProgressScene;

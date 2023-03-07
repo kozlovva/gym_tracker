@@ -64,7 +64,7 @@ const ExerciseList = (props) => {
                 id="panel1bh-header">
                 <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%", alignItems: "center", pr: 2 }}>
                     {MuscleGroupsInfo[muscle].locale}
-                    <Badge showZero badgeContent={calcCount(muscle)} color="secondary"></Badge>
+                    <Badge showZero badgeContent={calcCount(muscle)} color="secondary" sx={{zIndex: 0}}></Badge>
                 </Box>
             </AccordionSummary>
             <AccordionDetails>

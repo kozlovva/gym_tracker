@@ -56,10 +56,8 @@ export const TraningProgramScene = (props) => {
         setSelectedItem({...selectedItem, exercises: exercises})
     }
 
-    return <Box sx={{
-        height: "100%", overflow: "scroll",
-    }}>
-        <TraningProgramList onClick={onChangeModal}/>
+    return <div>
+        <TraningProgramList onClick={onChangeModal} withCount/>
         <Modal
             open={modalInfo.open}
             onClose={(e) => onChangeModal(e, null, null)}
@@ -77,9 +75,8 @@ export const TraningProgramScene = (props) => {
                 setExercises={setExercises} />}
         </Modal>
 
-
         <MainButton text="Создать программу" onClick={(e) => onChangeModal(e, ModalTypeAdd, DefaultTraningProgram())}/>
-    </Box>
+    </div>
 }
  
 export default TraningProgramScene;

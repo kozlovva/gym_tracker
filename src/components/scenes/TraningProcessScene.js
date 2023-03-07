@@ -94,9 +94,7 @@ const WorkoutProcessScene = (props) => {
         return selected.find(e => e.id == id) || false
     }
 
-    return <Box sx={{
-        height: "100%", overflow: "scroll"
-    }}>
+    return <div>
         <Grid container spacing={2}>
             {IsCompleted(workout) && <Grid item xs={12}>
                 <Paper sx={{
@@ -151,7 +149,7 @@ const WorkoutProcessScene = (props) => {
                 backgroundImage: 'linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)',
                 color: 'black'
             }} />}
-    </Box>
+    </div>
 }
 
 export default WorkoutProcessScene;
