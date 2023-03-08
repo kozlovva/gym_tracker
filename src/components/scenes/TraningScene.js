@@ -84,6 +84,7 @@ export const TraningScene = props => {
                     <Grid item key={idx} xs={12}>
                         <TraningCard
                             title={GetTraningProgramById(traning.traningProgramId).title}
+                            onClick={() => {navigateToWorkout(traning.id)}}
                             date={traning.startAt}
                             duration={traning.duration} />
                     </Grid>

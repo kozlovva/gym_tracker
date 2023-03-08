@@ -14,6 +14,7 @@ import TraningProgramScene from "./components/scenes/TraningProgramScene";
 import Layout from "./components/base/Layout";
 import WorkoutProcessScene from "./components/scenes/TraningProcessScene";
 import ProgressScene from "./components/scenes/ProgressScene";
+import DebugScene from "./components/scenes/DebugScene";
 
 const initExercises = () => {
   if (localStorage.getItem("exercises") == null)
@@ -31,6 +32,7 @@ const router = createHashRouter(
       <Route path="traning" element={<TraningScene />} />
       <Route path="workout-process/:workoutId" element={<WorkoutProcessScene />} />
       <Route path="progress" element={<ProgressScene/>} />
+      <Route path="debug" element={<DebugScene/>}></Route>
     </Route>
   )
 );

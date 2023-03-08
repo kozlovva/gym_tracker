@@ -1,4 +1,4 @@
-import { Fade, Grid, Paper, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
+import { Grid, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import ChartCard from '../base/ChartCard';
@@ -26,13 +26,11 @@ const ProgressScene = () => {
     }, [period])
 
     const handleChangePeriod = e => {
-
         updateFade(false);
         setTimeout(() => {
             updatePeriod(e.target.value)
             updateFade(true);
         }, 150)
-
     }
 
     return <div>
