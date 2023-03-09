@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import ChartCard from '../base/ChartCard';
 import CountChart from '../base/CountChart';
+import MultilineChartCard from '../base/MultilineChartCard';
 import { GetStatisticByPeriod } from '../service/ProgressService';
 
 const ProgressScene = () => {
@@ -18,7 +19,10 @@ const ProgressScene = () => {
         durationData: {
             max: 0,
             data: []
-        }
+        },
+        setsData: [{
+            data: []
+        }]
     })
 
     useEffect(() => {
@@ -79,6 +83,12 @@ const ProgressScene = () => {
                     maxValue={statistic.durationData.max}
                     dataKey="duration"
                     data={statistic.durationData.data} />
+            </Grid>
+            <Grid item xs={12}>
+                <MultilineChartCard
+                title="Подходы"
+                data={statistic.setsData}
+                lineDataKeys={["BICEPS", "TRICEPS", "LEGS", "BACK"]}/>
             </Grid>
         </Grid>
     </div>

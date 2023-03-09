@@ -27,16 +27,14 @@ export const CreateWorkout = (selectedProgram) => {
     return traning;
 }
 
-export const GetTodayWorkouts = () => {
-    var now = new Date();
+export const GetTodayActiveWorkouts = () => {
     return GetWorkouts()
-        .filter(e => FormatDate(new Date(e.startAt)) == FormatDate(now))
+        .filter(e => IsActive(e))
 }
 
 export const GetWorkoutHistory = () => {
-    var now = new Date();
     return GetWorkouts()
-        .filter(e => FormatDate(new Date(e.startAt)) != FormatDate(now))
+        .filter(e => !IsActive(e))
 }
 
 export const GetWorkoutById = id => {
@@ -98,8 +96,7 @@ export const CalcExerciseVolume = workoutExercise => {
 export const CalcProgressInPercent = workout => {
     let countOfSets = GetWorkoutSetsCount(workout);
     let completedSets = workout.exercises.reduce((result, exercise) => result + CalcCompletedSets(exercise), 0)
-    console.log(`${countOfSets} - ${completedSets}`)
-    return ((completedSets / countOfSets) * 100).toFixed(0)
+    return parseInt(((completedSets / countOfSets) * 100).toFixed(0))
 }
 
 export const CalcCompletedSets = workoutExercise => {

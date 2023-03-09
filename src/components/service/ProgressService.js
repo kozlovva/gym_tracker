@@ -1,4 +1,6 @@
+import { GetExercisesByMuscle } from "../../api/ExercisesAPI";
 import { FormatDate, GetDateRangeByPeriod } from "../../utils/DateUtils";
+import { MuscleGroupsEnum } from "../Constants";
 import { GetWorkoutsByDateRange } from "./WorkoutService";
 
 export const GetStatisticByPeriod = period => {
@@ -24,9 +26,35 @@ export const GetStatisticByPeriod = period => {
             data: workouts.map(workout => {
                 return {
                     date: FormatDate(new Date(workout.endAt)),
-                    duration: workout.duration 
+                    duration: workout.duration
                 }
             })
+        },
+        setsData: {
+            data: GetSetsData(workouts)
         }
     }
+}
+
+const GetSetsData = workouts => {
+    const result = MuscleGroupsEnum.map(muscle => {
+        const res = workouts.map(workout => {
+            const allExercisesByMuscleIds = GetExercisesByMuscle(muscle)
+                .map(item => item.id);
+
+            const targetSets = workout.exercises.filter(item => allExercisesByMuscleIds.includes(item.id))
+                .flatMap(item => item.sets)
+                .filter(set => set.completed)
+            return {
+                date: FormatDate(new Date(workout.endAt)),
+                setsCount: targetSets.length
+            }
+        })
+        return {
+            muscle: muscle,
+            data: res.filter(item => item.setsCount > 0)
+        }
+    })
+    return result;
+
 }

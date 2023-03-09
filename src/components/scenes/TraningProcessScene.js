@@ -108,7 +108,7 @@ const WorkoutProcessScene = (props) => {
                 const item = GetExerciseById(exercise.id);
                 return <Grid item xs={12} key={idx}>
                     <SetsTable
-                        infoMode={IsCompleted(workout) || IsNew(workout)}
+                        infoMode={IsCompleted(workout)}
                         inputMode={IsActive(workout)}
                         item={item}
                         sets={exercise.sets}

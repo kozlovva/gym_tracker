@@ -1,42 +1,50 @@
-import React from 'react';
-import { Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Typography, useTheme } from "@mui/material";
-import Tag from '../base/Tag';
-import { Box } from '@mui/system';
+import React, { useEffect, useState } from 'react';
+import { Card, CardActionArea, CardActions, CardHeader, LinearProgress, styled, useTheme } from "@mui/material";
+import { Box, keyframes } from '@mui/system';
 
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TextWithIcon from '../base/TextWithIcon';
 import { FormatDate } from '../../utils/DateUtils';
+import { CalcProgressInPercent } from "../service/WorkoutService"
 
-const defailtSx = {
-    display: 'flex'
+const animation = keyframes`
+0% {
+    background-position: 0% 50%;
 }
+50% {
+    background-position: 100% 50%;
+}
+100% {
+    background-position: 0% 50%;
+}
+`
 
 const TraningCard = (props) => {
-    if (props.status == "REJECTED")
-        return <CustomCard {...props} sx={{
-            backgroundColor: "#93291E",
-            backgroundImage: 'linear-gradient(62deg, #ED213A 0%, #93291E 100%)',
-
-        }} />
-    if (props.status == "COMPLETED")
-        return <CustomCard {...props} sx={{
-            backgroundColor: "#E2E2E2",
-            backgroundImage: 'linear-gradient(62deg, #C9D6FF 0%, #E2E2E2 100%)',
-
-        }} />
-
     return <CustomCard {...props} />
 }
 
+const StyledCard = styled(Card)(({ theme }) => ({
+    animation: `${animation} 5s ease infinite`,
+    backgroundSize: "200% 100%"
+}))
+
 const CustomCard = props => {
     const theme = useTheme();
-    return <Card
+    const isActive = props.status === "ACTIVE";
+    const [progress, updateProgress] = useState(0)
+    useEffect(() => {
+        if (isActive)
+            updateProgress(CalcProgressInPercent(props));
+    }, [props])
+
+    console.log("progress", progress)
+    return <StyledCard
         onClick={props.onClick}
         sx={{
             display: 'flex',
-            backgroundColor: "#FBAB7E",
-            backgroundImage: 'linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)',
+            backgroundColor: isActive ? "#FBAB7E" : theme.palette.secondary.light,
+            backgroundImage: isActive ? 'linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)' : 'none',
             ...props.sx
         }}>
         <CardActionArea>
@@ -45,17 +53,23 @@ const CustomCard = props => {
             <CardActions sx={{ justifyContent: "flex-end", p: 2 }}>
                 <Box sx={{ display: 'flex', flexDirection: "column", flex: "1 0 auto" }}>
                 </Box>
-                <Box sx={{ display: "flex", alignItems: 'center', pl: 1 }}>
+                {!isActive && <Box sx={{ display: "flex", alignItems: 'center', pl: 1 }}>
                     <TextWithIcon
                         icon={<CalendarMonthIcon />}
-                        text={FormatDate(new Date(props.date))} />
+                        text={FormatDate(new Date(props.startAt))} />
                     <TextWithIcon
                         icon={<AccessTimeIcon />}
                         text={`${props.duration} мин.`} />
-                </Box>
+                </Box>}
+                {isActive && <Box sx={{ width: "100%", position: "absolute", bottom: 0, right: 0 }}>
+                    <LinearProgress variant="determinate" value={progress} sx={{
+                        height: 16
+                    }} />
+                </Box>}
+
             </CardActions>
         </CardActionArea>
-    </Card>
+    </StyledCard>
 }
 
 export default TraningCard;

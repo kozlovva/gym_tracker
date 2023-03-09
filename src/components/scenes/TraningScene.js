@@ -4,7 +4,7 @@ import { GetTraningPrograms } from "../../api/TraningProgramAPI";
 import MainButton from "../base/MainButton";
 import Modal from "../base/Modal";
 import TraningProgramCard from "../program/TraningProgramCard";
-import { CreateWorkout, GetTodayWorkouts, GetWorkoutHistory } from "../service/WorkoutService";
+import { CreateWorkout, GetTodayActiveWorkouts, GetTodayWorkouts, GetWorkoutHistory } from "../service/WorkoutService";
 import { GetTraningProgramById } from "../service/TraningProgramService";
 import TraningCard from "../traning/TraningCard";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +20,7 @@ export const TraningScene = props => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const todayTranings = GetTodayWorkouts();
+        const todayTranings = GetTodayActiveWorkouts();
         setTodayTranings(todayTranings);
         const traningHistory = GetWorkoutHistory();
         setTraningHistory(traningHistory)
@@ -53,17 +53,16 @@ export const TraningScene = props => {
 
     return <div>
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
-            <Typography>Сегодня</Typography>
+            <Typography>Активные</Typography>
         </Box>
         {todayTranings.length > 0
             ? <Grid container spacing={2}>
                 {todayTranings.map((traning, idx) =>
                     <Grid item key={idx} xs={12}>
                         <TraningCard
-                            status={traning.status}
                             onClick={() => {navigateToWorkout(traning.id)}}
                             title={GetTraningProgramById(traning.traningProgramId).title}
-                            date={traning.startAt}
+                            {...traning}
                             duration={traning.duration} />
                     </Grid>
                 )}
@@ -85,8 +84,8 @@ export const TraningScene = props => {
                         <TraningCard
                             title={GetTraningProgramById(traning.traningProgramId).title}
                             onClick={() => {navigateToWorkout(traning.id)}}
-                            date={traning.startAt}
-                            duration={traning.duration} />
+                            {...traning}
+                            />
                     </Grid>
                 )}
             </Grid>

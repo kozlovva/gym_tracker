@@ -110,7 +110,7 @@ const TraningProgramForm = props => {
                         item={item}
                         sets={exercise.sets}
                         handleChangeInput={handleChangeRepeats}
-                        disableWeigth disableCompleted infoMode
+                        disableWeigth disableCompleted inputMode
                         addSet={addSet}
                     />
                 </Grid>
