@@ -38,7 +38,7 @@ const ProgressScene = () => {
     }
 
     return <div>
-        <Typography variant='h6'>Тренировочный прогресс</Typography>
+        <Typography variant='h6' align='center'>Тренировочный прогресс</Typography>
         <Box sx={{ display: 'flex', justifyContent: "center", pt: 2, pb: 2 }}>
             <ToggleButtonGroup
                 value={period}

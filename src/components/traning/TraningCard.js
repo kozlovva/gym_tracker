@@ -43,7 +43,6 @@ const CustomCard = props => {
         onClick={props.onClick}
         sx={{
             display: 'flex',
-            backgroundColor: isActive ? "#FBAB7E" : theme.palette.secondary.light,
             backgroundImage: isActive ? 'linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)' : 'none',
             ...props.sx
         }}>

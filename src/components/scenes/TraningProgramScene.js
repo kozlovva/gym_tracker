@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { AddTraningProgram, RemoveTraningProgram, UpdateTraningProgram } from '../../api/TraningProgramAPI';
 import MainButton from '../base/MainButton';
@@ -57,6 +57,7 @@ export const TraningProgramScene = (props) => {
     }
 
     return <div>
+        <Typography variant='h6' align="center">Тренировочные программы</Typography>
         <TraningProgramList onClick={onChangeModal} withCount/>
         <Modal
             open={modalInfo.open}

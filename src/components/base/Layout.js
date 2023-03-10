@@ -20,9 +20,6 @@ const darkTheme = createTheme({
             default: "#f7f3f3"
         }
     },
-    shape: {
-        borderRadius: '8px'
-    },
     typography: {
         fontFamily: [
             '-apple-system',

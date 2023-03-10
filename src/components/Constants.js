@@ -321,3 +321,34 @@ export const GenerateProgramExercise = id => {
         sets: sets
     }
 }
+
+export const Weekdays = [
+    {
+        id: 0,
+        locale: "Пн"
+    },
+    {
+        id: 1,
+        locale: "Вт"
+    },
+    {
+        id: 2,
+        locale: "Ср"
+    },
+    {
+        id: 3,
+        locale: "Чт"
+    },
+    {
+        id: 4,
+        locale: "Пт"
+    },
+    {
+        id: 5,
+        locale: "Сб"
+    },
+    {
+        id: 6,
+        locale: "Вск"
+    }
+]

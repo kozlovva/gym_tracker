@@ -8,7 +8,7 @@ const SetsTable = ({ item, sets, handleChangeInput, handleChangeCompleted, addSe
     const theme = useTheme();
     console.log(sets);
 
-    return <Paper sx={{ p: 1, mb: 2, mt: 1, backgroundColor: theme.palette.primary.light }}>
+    return <Paper sx={{ p: 1, mb: 2, mt: 1 }}>
         <Box sx={{ display: 'flex' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', pl: 2, pr: 2 }}>
                 <Typography>{item.title}</Typography>

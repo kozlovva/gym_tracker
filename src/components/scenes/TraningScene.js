@@ -4,10 +4,11 @@ import { GetTraningPrograms } from "../../api/TraningProgramAPI";
 import MainButton from "../base/MainButton";
 import Modal from "../base/Modal";
 import TraningProgramCard from "../program/TraningProgramCard";
-import { CreateWorkout, GetTodayActiveWorkouts, GetTodayWorkouts, GetWorkoutHistory } from "../service/WorkoutService";
+import { CreateWorkout, GetTodayActiveWorkouts, GetWorkoutHistory } from "../service/WorkoutService";
 import { GetTraningProgramById } from "../service/TraningProgramService";
 import TraningCard from "../traning/TraningCard";
 import { useNavigate } from "react-router-dom";
+import DateSelector from "../base/DateSelector";
 
 const EmptyResult = () => <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
     <Typography variant="caption">Пока тренировок нет</Typography>
@@ -17,14 +18,19 @@ export const TraningScene = props => {
     const [todayTranings, setTodayTranings] = useState([])
     const [traningHistory, setTraningHistory] = useState([])
     const [isOpen, setIsOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(new Date())
     const navigate = useNavigate();
 
     useEffect(() => {
         const todayTranings = GetTodayActiveWorkouts();
         setTodayTranings(todayTranings);
-        const traningHistory = GetWorkoutHistory();
-        setTraningHistory(traningHistory)
     }, [])
+
+    useEffect(() => {
+        console.log(selectedDate)
+        const traningHistory = GetWorkoutHistory(selectedDate);
+        setTraningHistory(traningHistory)
+    }, [selectedDate])
 
     const onStart = async (e, modaType, traningProgram) => {
         const workout = await CreateWorkout(traningProgram);
@@ -51,7 +57,12 @@ export const TraningScene = props => {
         navigate(`/workout-process/${id}`)
     }
 
+    const onSelectDate = newDate => {
+        setSelectedDate(newDate)
+    }
+
     return <div>
+        <Typography variant='h6' align="center">Мои тренировки</Typography>
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
             <Typography>Активные</Typography>
         </Box>
@@ -60,7 +71,7 @@ export const TraningScene = props => {
                 {todayTranings.map((traning, idx) =>
                     <Grid item key={idx} xs={12}>
                         <TraningCard
-                            onClick={() => {navigateToWorkout(traning.id)}}
+                            onClick={() => { navigateToWorkout(traning.id) }}
                             title={GetTraningProgramById(traning.traningProgramId).title}
                             {...traning}
                             duration={traning.duration} />
@@ -69,13 +80,13 @@ export const TraningScene = props => {
             </Grid>
             : <EmptyResult />}
 
-
-
         <Divider light sx={{ mt: 2, mb: 2 }}></Divider>
 
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
             <Typography>История</Typography>
         </Box>
+
+        <DateSelector startDaysCount={30} endDaysCount={30} selectedDate={selectedDate} onSelectDate={onSelectDate}/>
 
         {traningHistory.length > 0
             ? <Grid container spacing={2}>
@@ -83,9 +94,9 @@ export const TraningScene = props => {
                     <Grid item key={idx} xs={12}>
                         <TraningCard
                             title={GetTraningProgramById(traning.traningProgramId).title}
-                            onClick={() => {navigateToWorkout(traning.id)}}
+                            onClick={() => { navigateToWorkout(traning.id) }}
                             {...traning}
-                            />
+                        />
                     </Grid>
                 )}
             </Grid>

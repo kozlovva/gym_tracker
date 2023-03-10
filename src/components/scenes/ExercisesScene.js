@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { AddExercises, RemoveExercises, UpdateExercise } from "../../api/ExercisesAPI";
 import MainButton from "../base/MainButton";
@@ -58,6 +58,7 @@ const ExercisesScene = props => {
     }
 
     return <div>
+        <Typography variant='h6' align="center">Упражнения</Typography>
         <ExerciseList onClick={onChangeModal} />
         <Modal
             open={modalInfo.open}

@@ -1,5 +1,5 @@
 import { GetWorkouts, SetWorkouts, GetWorkoutById as ById } from "../../api/WorkoutAPI";
-import { FormatDate, MinutesBetweenDates } from "../../utils/DateUtils";
+import { DatesIsEquals, FormatDate, MinutesBetweenDates } from "../../utils/DateUtils";
 import { DefaultTraning } from "../Constants"
 
 export const CreateWorkout = (selectedProgram) => {
@@ -32,9 +32,14 @@ export const GetTodayActiveWorkouts = () => {
         .filter(e => IsActive(e))
 }
 
-export const GetWorkoutHistory = () => {
+export const GetWorkoutHistory = (date) => {
     return GetWorkouts()
-        .filter(e => !IsActive(e))
+        .filter(e => {
+            if (!IsActive(e) && DatesIsEquals(new Date(e.startAt), date))
+                return true;
+
+            return false;
+        })
 }
 
 export const GetWorkoutById = id => {
@@ -109,7 +114,7 @@ export const GetWorkoutSetsCount = workout => {
 
 export const GetWorkoutsByDateRange = range => {
     return GetWorkouts()
-        .filter(workout => { 
+        .filter(workout => {
             const endAt = new Date(workout.endAt);
             if (endAt >= range.from && endAt <= range.to) {
                 return workout;

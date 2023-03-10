@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, Typography } from '@mui/material';
+import { Button, Grid, Paper, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { GetExerciseById } from '../../api/ExercisesAPI';
@@ -7,6 +7,7 @@ import Modal from '../base/Modal';
 import { DefaultSet, GenerateProgramExercise } from '../Constants';
 import ExercisesSelector from '../exercise/ExercisesSelector';
 import SetsTable from '../program/SetsTable';
+import { GetTraningProgramById } from '../service/TraningProgramService';
 import { CompleteWorkout, GetWorkoutById, IsActive, IsCompleted, IsNew, SaveWorkout, StartWorkout } from '../service/WorkoutService';
 
 const WorkoutProcessScene = (props) => {
@@ -15,10 +16,13 @@ const WorkoutProcessScene = (props) => {
     const [selected, setSelected] = useState([]);
     const [isOpen, setOpen] = useState(false)
     const [workout, updateWorkout] = useState({ exercises: [] });
+    const [traningProgram, updateTraningProgram] = useState({title: ""}); 
     useEffect(() => {
         let result = GetWorkoutById(workoutId)
         updateWorkout(result)
         setSelected(result.exercises);
+        let traningProgram = GetTraningProgramById(result.traningProgramId)
+        updateTraningProgram(traningProgram)
     }, [workoutId])
 
     useEffect(() => {
@@ -95,6 +99,7 @@ const WorkoutProcessScene = (props) => {
     }
 
     return <div>
+        <Typography variant='h6'>Тренировка {traningProgram.title}</Typography>
         <Grid container spacing={2}>
             {IsCompleted(workout) && <Grid item xs={12}>
                 <Paper sx={{

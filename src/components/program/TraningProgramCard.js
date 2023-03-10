@@ -15,7 +15,6 @@ const TraningProgramCard = (props) => {
             minHeight: "160px",
             flexDirection: 'column',
             p: 1,
-            backgroundColor: theme.palette.secondary.light,
             ...props.sx
         }}
         onClick={(e) => props.onClick(e, ModalTypeInfo, props.item)}>
