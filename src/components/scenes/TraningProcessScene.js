@@ -5,10 +5,12 @@ import { GetExerciseById } from '../../api/ExercisesAPI';
 import MainButton from '../base/MainButton';
 import Modal from '../base/Modal';
 import { DefaultSet, GenerateProgramExercise } from '../Constants';
-import ExercisesSelector from '../exercise/ExercisesSelector';
 import SetsTable from '../program/SetsTable';
 import { GetTraningProgramById } from '../service/TraningProgramService';
-import { CompleteWorkout, GetWorkoutById, IsActive, IsCompleted, IsNew, SaveWorkout, StartWorkout } from '../service/WorkoutService';
+import { CompleteWorkout, GetWorkoutById, IsActive, IsCompleted, IsNew, IsRejected, RejectWorkout, SaveWorkout, StartWorkout } from '../service/WorkoutService';
+import ChangeExercisesModal from '../traning/ChangeExercisesModal';
+import RejectWorkoutModal from '../traning/RejectWorkoutModal';
+import WorkoutInfo from '../traning/WorkoutInfo';
 
 const WorkoutProcessScene = (props) => {
     const { workoutId } = useParams();
@@ -16,7 +18,12 @@ const WorkoutProcessScene = (props) => {
     const [selected, setSelected] = useState([]);
     const [isOpen, setOpen] = useState(false)
     const [workout, updateWorkout] = useState({ exercises: [] });
-    const [traningProgram, updateTraningProgram] = useState({title: ""}); 
+    const [traningProgram, updateTraningProgram] = useState({ title: "" });
+    const [rejectState, updateRejectState] = useState({
+        open: false,
+        rejectCause: "Устал"
+    })
+
     useEffect(() => {
         let result = GetWorkoutById(workoutId)
         updateWorkout(result)
@@ -29,6 +36,16 @@ const WorkoutProcessScene = (props) => {
         setSelected(workout.exercises)
     }, [workout])
 
+    const handleChangeReject = () => {
+        updateRejectState({ ...rejectState, open: !rejectState.open })
+    }
+
+    const onCloseReject = () => {
+        updateRejectState({
+            open: false,
+            rejectCause: ""
+        })
+    }
 
     const handleChangeOpen = () => {
         setOpen(!isOpen)
@@ -80,6 +97,11 @@ const WorkoutProcessScene = (props) => {
         updateWorkoutFilling(CompleteWorkout(workout));
     }
 
+    const rejectWorkout = () => {
+        updateWorkoutFilling(RejectWorkout(workout))
+        onCloseReject();
+    }
+
     const handleCheckItem = id => {
         if (!isSelected(id)) {
             setSelected([...selected, GenerateProgramExercise(id)])
@@ -101,19 +123,12 @@ const WorkoutProcessScene = (props) => {
     return <div>
         <Typography variant='h6'>Тренировка {traningProgram.title}</Typography>
         <Grid container spacing={2}>
-            {IsCompleted(workout) && <Grid item xs={12}>
-                <Paper sx={{
-                    p: 2
-                }}>
-                    <Typography variant='h6'>{`Тоннаж: ${workout.volume} кг`}</Typography>
-                    <Typography variant='h6'>{`Выполнено на ${workout.progress}%`}</Typography>
-                </Paper>
-                </Grid>}
+            {!IsActive(workout) && <WorkoutInfo workout={workout}/>}
             {workout.exercises.map((exercise, idx) => {
                 const item = GetExerciseById(exercise.id);
                 return <Grid item xs={12} key={idx}>
                     <SetsTable
-                        infoMode={IsCompleted(workout)}
+                        infoMode={!IsActive(workout)}
                         inputMode={IsActive(workout)}
                         item={item}
                         sets={exercise.sets}
@@ -124,28 +139,26 @@ const WorkoutProcessScene = (props) => {
             })}
         </Grid>
 
-        <Modal
-            open={isOpen}
+        <ChangeExercisesModal
+            isOpen={isOpen}
             onClose={onClose}
-            title="Изменить упражнения">
-            <ExercisesSelector
-                handleCheckItem={handleCheckItem}
-                selectedExercises={workout.exercises}
-                isSelected={isSelected}
-                selected={selected}
-                onSave={onSaveExercises} />
-        </Modal>
+            handleCheckItem={handleCheckItem}
+            selectedExercises={workout.exercises}
+            isSelected={isSelected}
+            selected={selected}
+            onSaveExercises={onSaveExercises}
+        />
 
-       {(IsNew(workout) || IsActive(workout)) && <Button onClick={handleChangeOpen}>Изменить упражнения</Button>}
+        <RejectWorkoutModal
+            isOpen={rejectState.open}
+            rejectCause={rejectState.rejectCause}
+            onClose={onCloseReject}
+            handleChange={(e) => updateRejectState({ ...rejectState, rejectCause: e.target.value })}
+            rejectWorkout={rejectWorkout} />
 
-        {IsNew(workout) && <MainButton
-            text={"Go!"}
-            onClick={startWorkout}
-            sx={{
-                backgroundColor: "#FBAB7E",
-                backgroundImage: 'linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)',
-                color: 'black'
-            }} />}
+        {(IsNew(workout) || IsActive(workout)) && <Button onClick={handleChangeOpen}>Изменить упражнения</Button>}
+        {(IsNew(workout) || IsActive(workout)) && <Button onClick={handleChangeReject}>Отменить тренировку</Button>}
+
         {IsActive(workout) && <MainButton
             text={"Завершить"}
             onClick={completeWorkout}

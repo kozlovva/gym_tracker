@@ -29,7 +29,6 @@ const CustomTooltip = ({ payload, selectedMuscle }) => {
 const MultilineChartCard = ({ data, title }) => {
     const [selectedMuscle, setSelectedMuscle] = useState("BICEPS")
     const [setsData, updateSetsData] = useState([]);
-    console.log("DATA", data)
     useEffect(() => {
         if (data != undefined && data.data != undefined) {
             const newData = data.data.find(item => item.muscle == selectedMuscle);

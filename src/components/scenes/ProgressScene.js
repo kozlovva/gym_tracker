@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ChartCard from '../base/ChartCard';
 import CountChart from '../base/CountChart';
 import MultilineChartCard from '../base/MultilineChartCard';
+import { MuscleGroupsEnum } from '../Constants';
 import { GetStatisticByPeriod } from '../service/ProgressService';
 
 const ProgressScene = () => {
@@ -88,7 +89,7 @@ const ProgressScene = () => {
                 <MultilineChartCard
                 title="Подходы"
                 data={statistic.setsData}
-                lineDataKeys={["BICEPS", "TRICEPS", "LEGS", "BACK"]}/>
+                lineDataKeys={MuscleGroupsEnum}/>
             </Grid>
         </Grid>
     </div>

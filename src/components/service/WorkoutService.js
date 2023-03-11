@@ -74,7 +74,11 @@ export const CompleteWorkout = workout => {
 export const RejectWorkout = (workout, cause) => {
     workout.endAt = new Date();
     workout.status = "REJECTED";
-    workout.rejectCause = cause
+    workout.rejectCause = cause;
+    workout.duration = MinutesBetweenDates(new Date(workout.startAt), workout.endAt);
+    workout.volume = workout.exercises
+        .reduce((result, exercise) => result + CalcExerciseVolume(exercise), 0);
+    workout.progress = CalcProgressInPercent(workout);
     SaveWorkout(workout)
     return workout;
 }
@@ -89,6 +93,10 @@ export const IsActive = workout => {
 
 export const IsCompleted = workout => {
     return workout.status == "COMPLETED";
+}
+
+export const IsRejected = workout => {
+    return workout.status == "REJECTED";
 }
 
 export const CalcExerciseVolume = workoutExercise => {
