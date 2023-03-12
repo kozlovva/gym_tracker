@@ -6,7 +6,7 @@ import Modal from '../base/Modal';
 import { DefaultModalState, DefaultTraningProgram, ModalTypeAdd, ModalTypeInfo } from '../Constants';
 import CreateTraningProgram from '../program/CreateTraningProgram';
 import TraningProgramInfo from '../program/TraningProgramInfo';
-import TraningProgramList from '../program/TraningProgramList';
+import TraningProgramList from '../program/TraningProgramList.tsx';
  
 export const TraningProgramScene = (props) => {
     const [modalInfo, setModalInfo] = useState(DefaultModalState);

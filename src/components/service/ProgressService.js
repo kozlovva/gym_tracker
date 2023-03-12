@@ -1,7 +1,7 @@
 import { GetExercisesByMuscle } from "../../api/ExercisesAPI";
 import { FormatDate, GetDateRangeByPeriod } from "../../utils/DateUtils";
 import { MuscleGroupsEnum } from "../Constants";
-import { GetWorkoutsByDateRange } from "./WorkoutService";
+import { GetWorkoutsByDateRange, IsRejected } from "./WorkoutService";
 
 export const GetStatisticByPeriod = period => {
     let dateRange = GetDateRangeByPeriod(period);
@@ -12,6 +12,7 @@ export const GetStatisticByPeriod = period => {
     return {
         workoutCount: workouts.length,
         fullCompleteCount: workouts.filter(workout => workout.progress == 100).length,
+        rejectedCount: workouts.filter(IsRejected).length,
         tonnageData: {
             max: maxVolume,
             data: workouts.map(workout => {

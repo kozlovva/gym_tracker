@@ -13,6 +13,7 @@ const ProgressScene = () => {
     const [statistic, updateStatistic] = useState({
         workoutCount: 0,
         fullCompleteCount: 0,
+        rejectedCount: 0,
         tonnageData: {
             max: 0,
             data: []
@@ -59,17 +60,23 @@ const ProgressScene = () => {
             </ToggleButtonGroup>
         </Box>
         <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
                 <CountChart
                     title="Тренировок"
                     fade={fade}
                     count={statistic.workoutCount} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
                 <CountChart
                     title="Завершено"
                     fade={fade}
                     count={statistic.fullCompleteCount} />
+            </Grid>
+            <Grid item xs={4}>
+                <CountChart
+                    title="Отменено"
+                    fade={fade}
+                    count={statistic.rejectedCount} />
             </Grid>
             <Grid item xs={12}>
                 <ChartCard

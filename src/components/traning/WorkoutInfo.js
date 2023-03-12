@@ -9,12 +9,6 @@ const WorkoutInfo = ({ workout }) => {
             <Typography variant='h6'>{`Тоннаж: ${workout.volume} кг`}</Typography>
             <Typography variant='h6'>{`Выполнено на ${workout.progress}%`}</Typography>
         </Paper>
-        <Paper sx={{
-            p: 2
-        }}>
-            <Typography variant='h6'>{`Тоннаж: ${workout.volume} кг`}</Typography>
-            <Typography variant='h6'>{`Выполнено на ${workout.progress}%`}</Typography>
-        </Paper>
     </Grid>
 }
 
