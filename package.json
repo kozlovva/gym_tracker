@@ -68,6 +68,7 @@
   "homepage": "https://kozlovva.github.io/gym_tracker/#/traning",
   "devDependencies": {
     "@babel/core": "^7.21.0",
-    "@babel/plugin-proposal-class-properties": "^7.18.6"
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@types/uuid": "^9.0.1"
   }
 }

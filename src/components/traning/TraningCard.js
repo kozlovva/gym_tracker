@@ -6,7 +6,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TextWithIcon from '../base/TextWithIcon';
 import { FormatDate } from '../../utils/DateUtils';
-import { CalcProgressInPercent } from "../service/WorkoutService"
+import { CalcProgressInPercent } from "../service/WorkoutService.ts"
 
 const animation = keyframes`
 0% {

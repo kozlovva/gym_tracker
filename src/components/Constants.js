@@ -278,7 +278,7 @@ export const DefaultTraningPrograms = [
                 ]
             }
         ]
-    },
+    }
 
 ]
 

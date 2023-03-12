@@ -1,7 +1,7 @@
 import { GetExercisesByMuscle } from "../../api/ExercisesAPI";
 import { FormatDate, GetDateRangeByPeriod } from "../../utils/DateUtils";
 import { MuscleGroupsEnum } from "../Constants";
-import { GetWorkoutsByDateRange, IsRejected } from "./WorkoutService";
+import { GetWorkoutsByDateRange, IsRejected } from "./WorkoutService.ts";
 
 export const GetStatisticByPeriod = period => {
     let dateRange = GetDateRangeByPeriod(period);

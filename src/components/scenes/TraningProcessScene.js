@@ -7,7 +7,7 @@ import Modal from '../base/Modal';
 import { DefaultSet, GenerateProgramExercise } from '../Constants';
 import SetsTable from '../program/SetsTable';
 import { GetTraningProgramById } from '../service/TraningProgramService';
-import { CompleteWorkout, GetWorkoutById, IsActive, IsCompleted, IsNew, IsRejected, RejectWorkout, SaveWorkout, StartWorkout } from '../service/WorkoutService';
+import { CompleteWorkout, GetWorkoutById, IsActive, IsCompleted, IsNew, IsRejected, RejectWorkout, SaveWorkout, StartWorkout } from '../service/WorkoutService.ts';
 import ChangeExercisesModal from '../traning/ChangeExercisesModal';
 import RejectWorkoutModal from '../traning/RejectWorkoutModal';
 import WorkoutInfo from '../traning/WorkoutInfo';

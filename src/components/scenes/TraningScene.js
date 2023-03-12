@@ -4,7 +4,7 @@ import { GetTraningPrograms } from "../../api/TraningProgramAPI";
 import MainButton from "../base/MainButton";
 import Modal from "../base/Modal";
 import TraningProgramCard from "../program/TraningProgramCard";
-import { CreateWorkout, GetTodayActiveWorkouts, GetWorkoutHistory } from "../service/WorkoutService";
+import { CreateWorkout, GetTodayActiveWorkouts, GetWorkoutHistory } from "../service/WorkoutService.ts";
 import { GetTraningProgramById } from "../service/TraningProgramService";
 import TraningCard from "../traning/TraningCard";
 import { useNavigate } from "react-router-dom";
