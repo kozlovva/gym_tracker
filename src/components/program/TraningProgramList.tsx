@@ -13,7 +13,7 @@ const TraningProgramList = ({
     withCount = false
 }: TraningProgramProps) => {
     return <Grid container spacing={2}>
-        {GetTraningPrograms().map((program, idx) => <Grid key={idx} item xs={6}>
+        {GetTraningPrograms().map((program: any, idx: number) => <Grid key={idx} item xs={6}>
             <TraningProgramCard item={program} onClick={onClick} withCount={withCount} />
         </Grid>)}
     </Grid>
