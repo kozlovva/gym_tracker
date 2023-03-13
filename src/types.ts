@@ -19,10 +19,6 @@ export enum WorkoutStatus {
     REJECTED = "REJECTED"
 }
 
-export type WorkoutExercise = {
-
-}
-
 export type TraningProgram = {
     id: string,
     title: string,
@@ -44,5 +40,31 @@ export type WorkoutSet = {
 export type DateRange = {
     from: Date,
     to: Date
+}
+
+export enum MuscleEnum {
+    BICEPS = 1,
+    TRICEPS = 1,
+    FOREARMS = 1,
+    QUADS = 2,
+    GLUTES = 2,
+    HAMSTRINGS = 2,
+    ABS = 3,
+    CHEST = 4,
+    SHOULDERS = 5,
+    NECK = 6,
+    LATS = 6,
+    LOWER_BACK = 6,
+    MIDDLE_BACK = 6,
+    TRAPS = 6
+}
+
+export enum MuscleGroupEnum {
+    ARM = 1,
+    LEGS = 2,
+    CORE = 3,
+    CHEST = 4,
+    SHOULDERS = 5,
+    BACK = 6
 }
 

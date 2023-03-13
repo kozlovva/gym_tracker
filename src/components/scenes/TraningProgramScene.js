@@ -65,7 +65,7 @@ export const TraningProgramScene = (props) => {
             title={modalInfo.title}>
             {modalInfo.type == ModalTypeInfo && <TraningProgramInfo
                 onChange={handleChangeItem}
-                item={selectedItem}
+                traningProgram={selectedItem}
                 onRemove={removeItem}
                 onSave={saveItem}
                 setExercises={setExercises} />}

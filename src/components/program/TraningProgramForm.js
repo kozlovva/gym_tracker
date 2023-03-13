@@ -67,7 +67,9 @@ const TraningProgramForm = props => {
 
     const handleChangeRepeats = (e, exercise, index) => {
         let target = selected.find(e => e.id == exercise.id);
-        target.sets[index].repeats = parseInt(e.target.value)
+        if (!e.target.value.match(/^([0-9]{1,})?(\.)?([0-9]{1,})?$/))
+            return;
+        target.sets[index].repeats = e.target.value
         setSelected(selected.map(e => {
             if (e.id == target.id)
                 return target;
@@ -131,7 +133,7 @@ const TraningProgramForm = props => {
         </Modal>
 
         <Button fullWidth variant="contained" color="secondary" onClick={handleChangeOpen}>
-           Изменить упражнения
+            Изменить упражнения
         </Button>
     </Box >
 }

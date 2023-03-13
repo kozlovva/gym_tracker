@@ -1,18 +1,24 @@
 import React from "react";
 import { Box, Button } from "@mui/material"
 
-const MainButton = ({isBottom, onClick, text, sx}) => {
+interface Props {
+    isBottom: boolean,
+    onClick(): void,
+    text: string,
+    sx?: object
+}
+
+const MainButton = ({isBottom, onClick, text, sx}: Props) => {
     return <Box sx={{
         position: 'fixed', 
         width: "100%", 
         bottom: isBottom ? 0 : 40, 
-        left: 0, 
         right: 0, 
         pl: 1, 
         pr: 1,
         left: '50%',
         transform: 'translate(-50%, -50%)',
-    }} elevation={3}>
+    }}>
         <Button
             variant="contained"
             fullWidth

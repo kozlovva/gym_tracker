@@ -2,46 +2,60 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const MuscleGroupsInfo = {
     "BICEPS": {
-        "locale": "Бицепс"
+        "locale": "Бицепс",
+        "group": "ARM"
     },
     "TRICEPS": {
-        "locale": "Трицепс"
-    },
-    "QUADS": {
-        "locale": "Передняя поверхность бедра"
-    },
-    "GLUTES": {
-        "locale": "Ягодицы"
-    },
-    "ABS": {
-        "locale": "Пресс"
-    },
-    "CHEST": {
-        "locale": "Грудь"
-    },
-    "SHOULDERS": {
-        "locale": "Плечи"
-    },
-    "HAMSTRINGS": {
-        "locale": "Задняя поверхность бедра"
+        "locale": "Трицепс",
+        "group": "ARM"
     },
     "FOREARMS": {
-        "locale": "Предплечья"
+        "locale": "Предплечья",
+        "group": "ARM"
+    },
+    "QUADS": {
+        "locale": "Передняя поверхность бедра",
+        "group": "LEGS"
+    },
+    "GLUTES": {
+        "locale": "Ягодицы",
+        "group": "LEGS"
+    },
+    "HAMSTRINGS": {
+        "locale": "Задняя поверхность бедра",
+        "group": "LEGS"
+    },
+    "ABS": {
+        "locale": "Пресс",
+        "group": "CORE"
+    },
+    "CHEST": {
+        "locale": "Грудь",
+        "group": "CHEST"
+    },
+    "SHOULDERS": {
+        "locale": "Плечи",
+        "group": "SHOULDERS"
     },
     "NECK": {
-        "locale": "Шея"
+        "locale": "Шея",
+        "group": "NECK"
     },
     "LATS": {
-        "locale": "Широчайшие"
+        "locale": "Широчайшие",
+        "group": "BACK"
     },
     "LOWER_BACK": {
-        "locale": "Разгибатели спины/Поясница"
+        "locale": "Разгибатели спины/Поясница",
+        "group": "BACK"
     },
     "MIDDLE_BACK": {
-        "locale": "Середина спины"
+        "locale": "Середина спины",
+        "group": "BACK"
     },
     "TRAPS": {
-        "locale": "Трапеции"
+        "locale": "Трапеции",
+        "group": "BACK"
     }
 };
 
@@ -61,6 +75,40 @@ export const MuscleGroupsEnum = [
     "MIDDLE_BACK",
     "TRAPS"
 ];
+
+export const MuscleGroupEnum = [
+    "ARM",
+    "LEGS",
+    "CORE",
+    "CHEST",
+    "SHOULDERS",
+    "BACK",
+    "NECK"
+]
+
+export const MuscleGroupInfo = {
+    "ARM": {
+        locale: "Руки"
+    },
+    "LEGS": {
+        locale: "Ноги"
+    },
+    "CORE": {
+        locale: "Мышцы кора"
+    },
+    "CHEST": {
+        locale: "Грудные мышны"
+    },
+    "SHOULDERS": {
+        locale: "Дельты"
+    },
+    "BACK": {
+        locale: "Спина"
+    },
+    "NECK": {
+        locale: "Шея"
+    }
+}
 
 export const DefaultExercises = [
     {

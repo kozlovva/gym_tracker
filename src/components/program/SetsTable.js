@@ -4,7 +4,7 @@ import React from 'react';
 import AddSetButton from '../base/AddSetButton';
 import { MuscleGroupsInfo } from '../Constants';
 
-const SetsTable = ({ item, sets, handleChangeInput, handleChangeCompleted, addSet, disableWeigth, disableCompleted, infoMode, inputMode }) => {
+const SetsTable = ({ item, sets, handleChangeInput, handleChangeCompleted, addSet, disableWeigth, disableCompleted, infoMode, inputMode, handleChangeFloat }) => {
     const theme = useTheme();
     console.log(sets);
 
@@ -53,8 +53,8 @@ const SetsTable = ({ item, sets, handleChangeInput, handleChangeCompleted, addSe
                                         }}
                                         size='small'
                                         name="weight"
-                                        type={"number"}
                                         onChange={(e) => { handleChangeInput(e, item, index) }}
+                                        onBlur={e => {handleChangeFloat(e, item, index)}}
                                         fullWidth
                                         value={set.weight} />}
                                     {infoMode && set.weight}

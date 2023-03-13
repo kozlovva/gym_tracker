@@ -7,7 +7,7 @@ import Modal from '../base/Modal';
 import { DefaultSet, GenerateProgramExercise } from '../Constants';
 import SetsTable from '../program/SetsTable';
 import { GetTraningProgramById } from '../service/TraningProgramService';
-import { CompleteWorkout, GetWorkoutById, IsActive, IsCompleted, IsNew, IsRejected, RejectWorkout, SaveWorkout, StartWorkout } from '../service/WorkoutService.ts';
+import { CompleteWorkout, GetWorkoutById, IsActive, IsNew, RejectWorkout, SaveWorkout, StartWorkout } from '../service/WorkoutService.ts';
 import ChangeExercisesModal from '../traning/ChangeExercisesModal';
 import RejectWorkoutModal from '../traning/RejectWorkoutModal';
 import WorkoutInfo from '../traning/WorkoutInfo';
@@ -58,7 +58,18 @@ const WorkoutProcessScene = (props) => {
 
     const handleChangeInput = (e, exercise, index) => {
         let target = getTargetExerciseById(exercise.id)
-        let newValue = e.target.value == "" ? "" : parseInt(e.target.value);
+        if (!e.target.value.match(/^([0-9]{1,})?(\.)?([0-9]{1,})?$/))
+            return;
+
+        let newValue = e.target.value
+        target.sets[index][e.target.name] = newValue
+        updateWorkoutFilling(target)
+    }
+
+    const handleChangeFloat = (e, exercise, index) => {
+        let target = getTargetExerciseById(exercise.id)
+
+        let newValue = parseFloat(e.target.value) || 0
         target.sets[index][e.target.name] = newValue
         updateWorkoutFilling(target)
     }
@@ -123,7 +134,7 @@ const WorkoutProcessScene = (props) => {
     return <div>
         <Typography variant='h6'>Тренировка {traningProgram.title}</Typography>
         <Grid container spacing={2}>
-            {!IsActive(workout) && <WorkoutInfo workout={workout}/>}
+            {!IsActive(workout) && <WorkoutInfo workout={workout} />}
             {workout.exercises.map((exercise, idx) => {
                 const item = GetExerciseById(exercise.id);
                 return <Grid item xs={12} key={idx}>
@@ -134,6 +145,7 @@ const WorkoutProcessScene = (props) => {
                         sets={exercise.sets}
                         handleChangeCompleted={handleChangeCompleted}
                         handleChangeInput={handleChangeInput}
+                        handleChangeFloat={handleChangeFloat}
                         addSet={addSet} />
                 </Grid>
             })}

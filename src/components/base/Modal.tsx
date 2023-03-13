@@ -1,15 +1,25 @@
-import { Dialog, DialogContent, DialogTitle, IconButton, Slide, Typography } from '@mui/material';
-import React from 'react';
+import { Dialog, DialogContent, DialogTitle, IconButton, Slide, SliderProps, Typography } from '@mui/material';
+import React, { ReactElement, ReactNode } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
+import { TransitionProps } from '@mui/material/transitions';
 
-const Transition = React.forwardRef((props, ref) => {
-    return <Slide direction="up" ref={ref} {...props} />;
+interface Props {
+    open: boolean,
+    title: string,
+    onClose(): void,
+    children: any
+}
+
+const Transition = React.forwardRef<unknown, TransitionProps & {
+    children: React.ReactElement
+}>((props, ref) => {
+    return <Slide direction="up" ref={ref} {...props}  />;
 });
 
-const Modal = (props) => {
+const Modal = ({ open, title, onClose, children }: Props) => {
     return <Dialog
-        open={props.open}
+        open={open}
         TransitionComponent={Transition}
         PaperProps={{
             sx: {
@@ -18,15 +28,17 @@ const Modal = (props) => {
                 m: 0,
                 position: "fixed",
                 bottom: 0,
+                borderTopLeftRadius: 8,
+                borderTopRightRadius: 8,
                 borderBottomRightRadius: 0,
                 borderBottomLeftRadius: 0
             }
         }}>
-        <DialogTitle sx={{pb:4}}>
-            {props.title}
+        <DialogTitle sx={{ pb: 4 }}>
+            {title}
             <IconButton
                 aria-label="close"
-                onClick={props.onClose}
+                onClick={onClose}
                 sx={{
                     position: 'absolute',
                     right: 8,
@@ -38,7 +50,7 @@ const Modal = (props) => {
             </IconButton>
         </DialogTitle>
         <DialogContent sx={{}}>
-            {props.children}
+            {children}
         </DialogContent>
     </Dialog>
 }
