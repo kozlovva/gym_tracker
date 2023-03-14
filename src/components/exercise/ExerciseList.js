@@ -23,7 +23,6 @@ const AccordionSummary = styled((props) => (
     />
 ))(({ theme }) => ({
     padding: theme.spacing(1),
-    backgroundColor: theme.palette.primary.light,
     flexDirection: 'row-reverse',
     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
         transform: 'rotate(90deg)',
@@ -53,10 +52,7 @@ const ExerciseList = (props) => {
     const calcCount = (muscle) => {
         return CountExercisesByMuscle(muscle);
     }
-
-    console.log(GetMuscleByGroup("ARM"))
-
-
+    
     return <Box sx={{
         display: "flex",
         flexDirection: "column",

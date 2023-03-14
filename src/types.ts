@@ -1,3 +1,5 @@
+import { ThemePalette } from "./reduxTypes"
+
 export type Workout = {
     id: string,
     notes?: string,
@@ -66,5 +68,9 @@ export enum MuscleGroupEnum {
     CHEST = 4,
     SHOULDERS = 5,
     BACK = 6
+}
+
+export type AppSettings = {
+    palette: ThemePalette
 }
 

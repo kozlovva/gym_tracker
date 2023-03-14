@@ -15,7 +15,7 @@ import Layout from "./components/base/Layout";
 import WorkoutProcessScene from "./components/scenes/TraningProcessScene";
 import ProgressScene from "./components/scenes/ProgressScene";
 import DebugScene from "./components/scenes/DebugScene";
-import AccountScene from "./components/scenes/AccountScene";
+import AccountScene from "./components/scenes/ProfileScene";
 
 const initExercises = () => {
   if (localStorage.getItem("exercises") == null)
